@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Cambia useHistory por useNavigate
 import axios from 'axios';
-import '/Users/rodrigoreyes/Downloads/shopping-web/src/views/login/login.css';
-import logo from '/Users/rodrigoreyes/Downloads/shopping-web/src/views/login/file.jpeg'; // Ajusta la ruta según donde guardes la imagen
+import './login.css';
+import logo from './file.jpeg'; // Ajusta la ruta según donde guardes la imagen
 
 const Login = () => {
     const [email, setEmail] = useState('');
