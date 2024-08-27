@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "user",
+    "password": "password",
+    "database": "shoppingweb",
+    "host": "127.0.0.1",
+    "port": "3308",
+    "dialect": "mysql"
+  }
+}
