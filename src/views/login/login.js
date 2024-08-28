@@ -32,6 +32,10 @@ const Login = () => {
         }
     };
 
+    const handleSignUp = () => {
+        navigate('/register'); // Redirige a la página de registro
+    };
+
     return (
         <div className="login-container">
             <div className="logo-container">
@@ -57,7 +61,7 @@ const Login = () => {
                 <button type="submit">Login</button>
             </form>
             <a href="#">Forgot password?</a>
-            <a href="#">Sign Up</a>
+            <a href="#" onClick={handleSignUp}>Sign Up</a>
         </div>
     );
 };
