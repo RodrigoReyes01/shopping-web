@@ -17,7 +17,7 @@ function App() {
         <Route path="/plaza" element={<div>Plaza Page</div>} />
         <Route path="/register" element={<Register />} />  
         <Route path="/result" element={<div>Result Page</div>} />
-        <Route path="/settings" element={<div>Settings Page</div>} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
   );
