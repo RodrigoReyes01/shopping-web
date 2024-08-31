@@ -1,6 +1,5 @@
-//src/views/login/login.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Cambia useHistory por useNavigate
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './login.css';
 import logo from './file.jpeg'; // Ajusta la ruta según donde guardes la imagen
@@ -9,7 +8,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Cambia useHistory por useNavigate
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -21,12 +20,14 @@ const Login = () => {
         }
 
         try {
-            // Intenta autenticar al usuario
-            const response = await axios.post('http://tu-api.com/login', { email, password });
+            // Intenta autenticar al usuario con la URL correcta
+            const response = await axios.post('http://localhost:3002/auth/login', { email, password });
+            
+            // Almacena el token en localStorage
             localStorage.setItem('token', response.data.token);
 
             // Redirige a la página principal si la autenticación es exitosa
-            navigate('/main'); // Cambia history.push por navigate
+            navigate('/main');
         } catch (err) {
             // Si ocurre un error, muestra un mensaje
             setError('La información ingresada es incorrecta');
