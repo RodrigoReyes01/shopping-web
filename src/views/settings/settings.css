@@ -77,10 +77,28 @@ body.settings-page {
 
 }
 
+.update-button {
+    background-color: rgb(143, 217, 33);
+    color: white;
+    padding: 16px 20px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 17px;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+}
+
 .back-button:hover {
     background-color: #005BB5;
 }
 
 .logout-button:hover{
     background-color: #9b0000;
+}
+
+.update-button:hover{
+    background-color: green;
 }

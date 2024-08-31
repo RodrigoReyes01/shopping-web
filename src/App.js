@@ -6,6 +6,7 @@ import Plaza from './views/plaza/plaza';
 import Register from './views/register/register';
 import Result from './views/result/result';
 import Settings from './views/settings/settings';
+import Profile from './views/profile/profile';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" element={<Register />} />  
         <Route path="/result" element={<div>Result Page</div>} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/profile" element={<div>Profile</div>} />
       </Routes>
     </Router>
   );

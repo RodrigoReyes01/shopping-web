@@ -24,9 +24,16 @@ const Settings = () => {
         navigate('/main'); // Redirige a la página principal (Main)
     };
 
+    const handleupdateprofile = () => {
+        navigate('/profile'); // Redirige a la página principal (Main)
+    };
+
     return (
         <div className="settings-container">
             <h2>Ajustes</h2>
+            <button className="update-button" onClick={handleupdateprofile}>
+                Update Profile
+            </button>
             <button className="logout-button" onClick={handleLogout}>
                 Logout
             </button>

@@ -32,11 +32,11 @@ const Main = () => {
                     <img src={settingsIcon} alt="Settings" />
                 </button>
             </header>
-            <h1>Busca tu trabajo ideal . . .</h1>
+            <h1>Look for your Perfect Job . . .</h1>
             <input
                 type="text"
                 className="search-bar"
-                placeholder="Busca empleos, empresas, palabras clave..."
+                placeholder="Search for Jobs, Business or Key Words..."
             />
         </div>
     );

@@ -38,7 +38,7 @@ const Register = () => {
             navigate('/main');
         } catch (err) {
             // Si ocurre un error, muestra un mensaje
-            setError('Hubo un problema con el registro');
+            setError('Something went wrong, try again');
         }
     };
 
