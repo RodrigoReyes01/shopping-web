@@ -1,66 +1,115 @@
-body, html {
+html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
+}
+
+body.login-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #93c1db;
-    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #07011e, #11264b, #000000, #0f4a7a);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-shadow: none;
+    overflow: hidden;
+    width: 100%; /* Asegura que el body ocupe el 100% del ancho */
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .login-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    background: rgba(28, 28, 30, 0.85);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
-.logo-container {
-    margin-bottom: 20px;
+.login-logo-container {
+    margin-bottom: 1.5rem;
 }
 
-.logo-container img {
-    width: 80px;
+.login-logo-container img {
+    width: 70px;
     height: auto;
 }
 
+.login-container h2, .login-container h3 {
+    margin: 0;
+    color: #FFFFFF;
+}
+
 .login-container h2 {
-    margin-bottom: 2rem;
-    font-size: 24px;
-    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.login-container h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 400;
 }
 
 .login-container input {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    background-color: #2C2C2E;
+    border: 1px solid #3A3A3C;
+    border-radius: 12px;
+    color: #F0F0F0;
     box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.login-container input::placeholder {
+    color: #7C7C7C;
 }
 
 .login-container button {
-    background-color: #4CAF50;
+    background-color: #007AFF;
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+    padding: 16px 20px;
+    margin: 12px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 12px;
     cursor: pointer;
     width: 100%;
+    font-size: 17px;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .login-container button:hover {
-    background-color: #45a049;
+    background-color: #005BB5;
 }
 
 .login-container a {
     display: block;
-    margin-top: 10px;
-    color: #888;
+    margin-top: 12px;
+    color: #8E8E93;
     text-decoration: none;
+    font-size: 0.9375rem;
 }
 
+.login-container a:hover {
+    color: #FFFFFF;
+}

@@ -1,9 +1,8 @@
-// register.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './register.css'; // Usaremos el mismo archivo de CSS
-import logo from './file.jpeg'; // Ajusta la ruta según donde guardes la imagen
+import logo from './W.png'; // Ajusta la ruta según donde guardes la imagen
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -11,6 +10,16 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Añadir la clase register-page al body
+        document.body.classList.add('register-page');
+
+        // Limpiar la clase al desmontar el componente
+        return () => {
+            document.body.classList.remove('register-page');
+        };
+    }, []);
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -34,8 +43,8 @@ const Register = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="logo-container">
+        <div className="register-container">
+            <div className="register-logo-container">
                 <img src={logo} alt="Workify Logo" />
             </div>
             <h2>Workify</h2>

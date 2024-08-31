@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './login.css';
-import logo from './file.jpeg'; // Ajusta la ruta según donde guardes la imagen
+import logo from './W.png'; // Ajusta la ruta según donde guardes la imagen
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Añadir la clase login-page al body
+        document.body.classList.add('login-page');
+
+        // Limpiar la clase al desmontar el componente
+        return () => {
+            document.body.classList.remove('login-page');
+        };
+    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -40,10 +50,11 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            <div className="logo-container">
+            <div className="login-logo-container">
                 <img src={logo} alt="Workify Logo" />
             </div>
             <h2>Workify</h2>
+            <h3>Login</h3>
             <form onSubmit={handleLogin}>
                 <input
                     type="email"
