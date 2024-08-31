@@ -1,4 +1,5 @@
-'use strict';
+//Backend/models/jobpost.js
+
 const {
   Model
 } = require('sequelize');

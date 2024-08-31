@@ -1,3 +1,4 @@
+//src/views/login/login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Cambia useHistory por useNavigate
 import axios from 'axios';
@@ -60,8 +61,8 @@ const Login = () => {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button type="submit">Login</button>
             </form>
-            <a href="#">Forgot password?</a>
-            <a href="#" onClick={handleSignUp}>Sign Up</a>
+            <a href="/forgot-password">Forgot password?</a>
+            <a href="/register" onClick={handleSignUp}>Sign Up</a>
         </div>
     );
 };

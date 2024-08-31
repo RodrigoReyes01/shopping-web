@@ -7,20 +7,21 @@ import Register from './views/register/register';
 import Result from './views/result/result';
 import Settings from './views/settings/settings';
 
+
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/main" element={<Main />} />
-        <Route path="/plaza" element={<Plaza />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/result" element={<Result />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/main" element={<div>Main Page</div>} />
+        <Route path="/plaza" element={<div>Plaza Page</div>} />
+        <Route path="/register" element={<Register />} />  
+        <Route path="/result" element={<div>Result Page</div>} />
+        <Route path="/settings" element={<div>Settings Page</div>} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-  
+

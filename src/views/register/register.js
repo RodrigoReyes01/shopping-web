@@ -1,3 +1,4 @@
+// register.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -22,10 +23,10 @@ const Register = () => {
 
         try {
             // Intenta registrar al usuario
-            await axios.post('http://tu-api.com/register', { name, email, password });
+            await axios.post('http://localhost:3002/auth/register', { name, email, password });
             
             // Redirige al login después del registro exitoso
-            navigate('/login');
+            navigate('/main');
         } catch (err) {
             // Si ocurre un error, muestra un mensaje
             setError('Hubo un problema con el registro');

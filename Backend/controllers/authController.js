@@ -1,23 +1,21 @@
-const { User } = require('../models');
+const { User } = require('../models'); // Asegúrate de que la importación sea correcta
 
-// Registro de usuario
 exports.register = async (req, res) => {
-  const { name, email, password, age, gender, education, motives } = req.body;
+  const { name, email, password } = req.body;
   try {
-    const user = await User.create({ name, email, password, age, gender, education, motives });
+    const user = await User.create({ name, email, password });
     res.status(201).json({ user });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-// Inicio de sesión
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ where: { email } });
     if (!user || user.password !== password) {
-      return res.status(401).json({ message: 'Credenciales inválidas' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
     res.status(200).json({ user });
   } catch (error) {
