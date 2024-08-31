@@ -19,7 +19,7 @@ function App() {
         <Route path="/register" element={<Register />} />  
         <Route path="/result" element={<div>Result Page</div>} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/profile" element={<div>Profile</div>} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );
