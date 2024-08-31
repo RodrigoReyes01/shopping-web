@@ -1,0 +1,105 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body.main-page {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(-45deg, #07011e, #11264b, #000000, #0f4a7a);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-shadow: none;
+    overflow: hidden;
+    width: 100%;
+    color: white;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.header {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Asegura que los elementos estén en los extremos */
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.header h1 {
+    font-size: 1.rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.settings-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.settings-button img {
+    width: 20px;
+    height: auto;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.main-container h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.search-bar {
+    width: 80%;
+    max-width: 600px;
+    padding: 14px 20px;
+    border-radius: 50px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #F0F0F0;
+    font-size: 1.25rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.search-bar::placeholder {
+    color: #7C7C7C;
+}
