@@ -1,0 +1,71 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.results-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la pantalla */
+    background: linear-gradient(-45deg, #07011e, #11264b, #000000, #0f4a7a);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+    width: 100%;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.results-container {
+    background: rgba(28, 28, 30, 0.85);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.results-list {
+    max-height: 60vh;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+.result-item {
+    background-color: #2C2C2E;
+    padding: 14px 18px;
+    margin: 12px 0;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #FFFFFF;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.result-item:hover {
+    background-color: #3A3A3C;
+}
+
+.results-container h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
