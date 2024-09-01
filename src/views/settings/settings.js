@@ -34,12 +34,13 @@ const Settings = () => {
             <button className="update-button" onClick={handleupdateprofile}>
                 Update Profile
             </button>
+            <button className="back-button" onClick={handleBackToMain}>
+                Back
+            </button>
             <button className="logout-button" onClick={handleLogout}>
                 Logout
             </button>
-            <button className="back-button" onClick={handleBackToMain}>
-                Volver
-            </button>
+            
         </div>
     );
 };

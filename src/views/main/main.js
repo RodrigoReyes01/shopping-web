@@ -28,9 +28,9 @@ const Main = () => {
                     <img src={logo} alt="Workify Logo" />
                     <h1>Workify</h1>
                 </div>
-                <button className="settings-button" onClick={goToSettings}>
+                <buttonofmain className="settings-button" onClick={goToSettings}>
                     <img src={settingsIcon} alt="Settings" />
-                </button>
+                </buttonofmain>
             </header>
             <h1>Look for your Perfect Job . . .</h1>
             <input

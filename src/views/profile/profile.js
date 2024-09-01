@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './profile.css';
 
 const Profile = () => {
@@ -9,6 +10,7 @@ const Profile = () => {
     const [company, setCompany] = useState('');
     const [location, setLocation] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Añadir la clase profile-page al body
@@ -89,9 +91,13 @@ const Profile = () => {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button type="submit">Save Profile</button>
             </form>
+            <button 
+                className="back-to-settings-button" 
+                onClick={() => navigate('/settings')}>
+                Back
+            </button>
         </div>
     );
 };
 
 export default Profile;
-
