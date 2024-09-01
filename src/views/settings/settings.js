@@ -17,7 +17,7 @@ const Settings = () => {
 
     const handleLogout = () => {
         // Aquí puedes limpiar cualquier estado de sesión si es necesario
-        navigate('/login'); // Redirige a la página de login
+        navigate('/homepage'); // Redirige a la página de login
     };
 
     const handleBackToMain = () => {
