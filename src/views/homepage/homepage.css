@@ -82,3 +82,52 @@ body.homepage {
     outline: none;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
+
+
+.reviews-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* Elimina la clase .reviews-section ya que ya no es necesaria */
+.review-card {
+    display: flex;
+    align-items: center; /* Centra la imagen en el eje vertical */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    width: 80%;
+    height: 50%;
+    max-width: 500px;
+}
+
+.profile-pic {
+    width: 20px;
+    height: 20px;
+    max-width: 60px;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+.review-content {
+    text-align: left; /* Justifica el texto a la izquierda */
+    flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.review-content h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #F0F0F0;
+}
+
+.review-content p {
+    margin: 10px 0 0 0;
+    font-size: 0.8rem;
+    color: #9b9ba4;
+}
