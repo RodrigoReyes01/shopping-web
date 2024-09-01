@@ -1,9 +1,8 @@
-/* homepage.css */
-
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Evita el scroll horizontal */
 }
 
 body.homepage {
@@ -14,7 +13,7 @@ body.homepage {
     animation: gradient 15s ease infinite;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     box-shadow: none;
-    overflow: hidden;
+    overflow-x: hidden; /* Evita el scroll horizontal */
     width: 100%;
     color: white;
 }
@@ -36,8 +35,8 @@ body.homepage {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    text-align: center;
+    min-height: 200vh; /* Permite que la sección sea scrollable */
+    padding-top: 100px;
 }
 
 .homepage img {
@@ -61,16 +60,19 @@ body.homepage {
 .button-container {
     display: flex;
     gap: 20px;
+    margin-bottom: 100px;
 }
 
 .button-container button {
-    padding: 10px 20px;
+    width: 200px;
+    padding: 20px 40px;
+    margin: 0px;
     font-size: 1rem;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.1);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: background-color 0.3s ease;
 }
 
@@ -83,25 +85,15 @@ body.homepage {
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-
-.reviews-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-/* Elimina la clase .reviews-section ya que ya no es necesaria */
 .review-card {
     display: flex;
-    align-items: center; /* Centra la imagen en el eje vertical */
+    align-items: center;
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
     border-radius: 20px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    margin: 20px auto;
+    margin: 40px auto;
     width: 80%;
-    height: 50%;
     max-width: 500px;
 }
 
@@ -114,8 +106,8 @@ body.homepage {
 }
 
 .review-content {
-    text-align: left; /* Justifica el texto a la izquierda */
-    flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+    text-align: left;
+    flex-grow: 1;
     margin-left: 10px;
     margin-right: 20px;
 }
@@ -130,4 +122,8 @@ body.homepage {
     margin: 10px 0 0 0;
     font-size: 0.8rem;
     color: #9b9ba4;
+}
+
+.review-card:last-child {
+    margin-bottom: 300px; /* Espacio adicional debajo de la última review */
 }
