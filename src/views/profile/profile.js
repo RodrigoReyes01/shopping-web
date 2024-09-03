@@ -3,12 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './profile.css';
 
-const Profile = () => {
-    const [jobTitle, setJobTitle] = useState('');
-    const [currentSalary, setCurrentSalary] = useState('');
-    const [industry, setIndustry] = useState('');
-    const [company, setCompany] = useState('');
-    const [location, setLocation] = useState('');
+const Profile = ({ userId }) => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -22,23 +19,30 @@ const Profile = () => {
         };
     }, []);
 
+    useEffect(() => {
+        // Fetch para obtener el nombre del usuario basado en el userId
+        const fetchUserName = async () => {
+            try {
+                const response = await axios.get(`/api/profile/name/${userId}`);
+                setName(response.data.name);
+            } catch (err) {
+                setError('Error fetching user name, please try again.');
+            }
+        };
+
+        if (userId) {
+            fetchUserName();
+        }
+    }, [userId]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Verifica si los campos están vacíos
-        if (!jobTitle || !currentSalary || !industry || !company || !location) {
-            setError('Todos los campos son obligatorios');
-            return;
-        }
-
         try {
-            // Aquí podrías enviar los datos a una API para almacenarlos en la base de datos
-            await axios.post('http://localhost:3002/profile', {
-                jobTitle,
-                currentSalary,
-                industry,
-                company,
-                location
+            // Aquí podrías enviar los datos actualizados a la API para almacenarlos en la base de datos
+            await axios.put(`/api/profile/${userId}`, {
+                name,
+                email,
             });
 
             // Maneja el caso de éxito
@@ -55,37 +59,16 @@ const Profile = () => {
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    placeholder="Enter your job title"
-                    value={jobTitle}
-                    onChange={(e) => setJobTitle(e.target.value)}
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                 />
                 <input
-                    type="text"
-                    placeholder="Enter your current salary"
-                    value={currentSalary}
-                    onChange={(e) => setCurrentSalary(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Enter your industry"
-                    value={industry}
-                    onChange={(e) => setIndustry(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Enter your company name"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Enter your location"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                 />
                 {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -101,3 +84,4 @@ const Profile = () => {
 };
 
 export default Profile;
+

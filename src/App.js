@@ -9,7 +9,6 @@ import Settings from './views/settings/settings';
 import Profile from './views/profile/profile';
 import Homepage from './views/homepage/homepage'
 
-
 function App() {
   return (
     <Router>
@@ -29,4 +28,3 @@ function App() {
 }
 
 export default App;
-
