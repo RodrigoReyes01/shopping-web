@@ -7,6 +7,7 @@ const mainRoutes = require('./routes/MainRoutes');
 const plazaRoutes = require('./routes/PlazaRoutes');
 const resultRoutes = require('./routes/ResultRoutes');
 const settingsRoutes = require('./routes/SettingsRoutes');
+const ProfileRoutes = require('./routes/ProfileRoutes');
 
 dotenv.config();
 
@@ -15,7 +16,7 @@ const port = process.env.PORT || 3002;  // Cambia al puerto que estás usando
 
 // Configura CORS para permitir solicitudes desde el frontend en el puerto 3001
 app.use(cors({
-  origin: 'http://localhost:3001',  // Permite solicitudes desde el frontend en el puerto 3001
+  origin: '*',  // Permite solicitudes desde el frontend en el puerto 3001
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,  // Si necesitas que se envíen cookies junto con la solicitud
 }));
@@ -30,6 +31,7 @@ app.use('/main', mainRoutes);
 app.use('/result', resultRoutes);
 app.use('/plaza', plazaRoutes);
 app.use('/settings', settingsRoutes);
+app.use('/profile', ProfileRoutes);
 
 // Conectar a la base de datos y arrancar el servidor
 sequelize.sync().then(() => {

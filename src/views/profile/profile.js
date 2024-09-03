@@ -8,6 +8,7 @@ const Profile = ({ userId }) => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    console.log("Estoy cargando el profile" + userId);
 
     useEffect(() => {
         // Añadir la clase profile-page al body
@@ -22,8 +23,10 @@ const Profile = ({ userId }) => {
     useEffect(() => {
         // Fetch para obtener el nombre del usuario basado en el userId
         const fetchUserName = async () => {
+            console.log("Entre a la funcion: Obtener Nombre");
             try {
-                const response = await axios.get(`/api/profile/name/${userId}`);
+                const response = await axios.get(`http://localhost:3002/profile/name/${userId}`);
+                console.log(response);
                 setName(response.data.name);
             } catch (err) {
                 setError('Error fetching user name, please try again.');
@@ -40,7 +43,7 @@ const Profile = ({ userId }) => {
 
         try {
             // Aquí podrías enviar los datos actualizados a la API para almacenarlos en la base de datos
-            await axios.put(`/api/profile/${userId}`, {
+            await axios.put(`/profile/${userId}`, {
                 name,
                 email,
             });
