@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from './W.png';
 import settingsIcon from './Settings.png';
@@ -9,6 +9,14 @@ const Main = () => {
   const [industry, setIndustry] = useState('');
   const [location, setLocation] = useState('');
   const [salary, setSalary] = useState('');
+
+  // Asegurarse de que el CSS con la clase main-page se aplique correctamente
+  useEffect(() => {
+    document.body.classList.add('main-page');
+    return () => {
+      document.body.classList.remove('main-page');
+    };
+  }, []);
 
   const handleSearch = () => {
     navigate('/result', { state: { industry, location, salary } });

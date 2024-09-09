@@ -43,6 +43,10 @@ const Result = () => {
             </div>
           ))}
         </div>
+        <button className="back-to-main-button" onClick={() => navigate('/main')}>
+             Go Back to Main
+        </button>
+
       </div>
     </div>
   );

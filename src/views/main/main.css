@@ -1,3 +1,4 @@
+/* General styles */
 html, body {
     height: 100%;
     margin: 0;
@@ -29,6 +30,7 @@ body.main-page {
     }
 }
 
+/* Header */
 .header {
     width: 100%;
     padding: 10px 20px;
@@ -54,7 +56,7 @@ body.main-page {
 }
 
 .header h1 {
-    font-size: 1.rem;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 1;
 }
@@ -69,7 +71,7 @@ body.main-page {
     height: auto;
 }
 
-
+/* Main container */
 .main-container {
     display: flex;
     flex-direction: column;
@@ -85,7 +87,8 @@ body.main-page {
     font-weight: 600;
 }
 
-.search-bar {
+/* Styling the search bar and selectors */
+.search-bar, select {
     width: 80%;
     max-width: 600px;
     padding: 14px 20px;
@@ -97,8 +100,42 @@ body.main-page {
     backdrop-filter: blur(10px);
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
+    margin-bottom: 1rem;
 }
 
-.search-bar::placeholder {
+.search-bar::placeholder, select option {
     color: #95a1a9;
+}
+
+select {
+    appearance: none; /* Elimina el estilo predeterminado */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M7 10l5 5 5-5z"/></svg>'); /* Icono de dropdown */
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 15px;
+    padding-right: 50px;
+    color: white;
+}
+
+select:focus {
+    outline: none;
+}
+
+/* Ajuste del botón para que quede bien posicionado debajo de los selectores */
+button.search-button {
+    padding: 14px 30px;
+    background-color: #2b85e0;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 1.5rem; /* Incrementar margen superior para separarlo de los selectores */
+    width: 100%; /* Para que el botón tome el ancho completo del contenedor */
+    max-width: 600px; /* Asegurar que tenga un ancho máximo similar a los selectores */
+}
+
+button.search-button:hover {
+    background-color: #1b63ab;
 }
