@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const resultController = require('../controllers/resultController');
 
-router.get('/', resultController.renderResultPage);
+// Ruta para obtener resultados filtrados
+router.post('/', resultController.getFilteredResults);
 
 module.exports = router;

@@ -1,37 +1,28 @@
 const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors'); // Importa CORS
-const { sequelize } = require('./models'); // Importa tu configuración de Sequelize
-const authRoutes = require('./routes/AuthRoutes');
-const mainRoutes = require('./routes/MainRoutes');
-const plazaRoutes = require('./routes/PlazaRoutes');
+const cors = require('cors');
+const { sequelize } = require('./models'); // Importar la configuración de Sequelize
 const resultRoutes = require('./routes/ResultRoutes');
-const settingsRoutes = require('./routes/SettingsRoutes');
+const dotenv = require('dotenv');
 
-dotenv.config();
+dotenv.config(); // Cargar variables del archivo .env
 
 const app = express();
-const port = process.env.PORT || 3002;  // Cambia al puerto que estás usando
+const port = process.env.PORT || 3002;
 
-// Configura CORS para permitir solicitudes desde el frontend en el puerto 3001
+// Configurar CORS
 app.use(cors({
-  origin: 'http://localhost:3001',  // Permite solicitudes desde el frontend en el puerto 3001
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,  // Si necesitas que se envíen cookies junto con la solicitud
+  origin: 'http://localhost:3001',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 
-app.use(express.json()); // Middleware para parsear JSON
+// Middleware para parsear JSON
+app.use(express.json());
 
-// Rutas de autenticación
-app.use('/auth', authRoutes);
+// Rutas
+app.use('/result', resultRoutes);  // Rutas de resultados de búsqueda
 
-// Otras rutas
-app.use('/main', mainRoutes);
-app.use('/result', resultRoutes);
-app.use('/plaza', plazaRoutes);
-app.use('/settings', settingsRoutes);
-
-// Conectar a la base de datos y arrancar el servidor
+// Iniciar el servidor y sincronizar Sequelize
 sequelize.sync().then(() => {
   app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port}`);
