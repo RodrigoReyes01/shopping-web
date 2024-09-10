@@ -7,7 +7,9 @@ import Register from './views/register/register';
 import Result from './views/result/result';
 import Settings from './views/settings/settings';
 import Profile from './views/profile/profile';
+
 import Homepage from './views/homepage/homepage'
+
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
         <Route path="/result" element={<Result Page />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/homepage" element={<Homepage />} />
       </Routes>
     </Router>
