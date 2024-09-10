@@ -8,7 +8,6 @@ const Profile = ({ userId }) => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    console.log("Estoy cargando el profile con userId:", userId);
 
     useEffect(() => {
         // Añadir la clase profile-page al body
@@ -23,18 +22,14 @@ const Profile = ({ userId }) => {
     useEffect(() => {
         // Fetch para obtener el nombre del usuario basado en el userId
         const fetchUserName = async () => {
-            console.log("Entre a la función: Obtener Nombre");
             try {
                 const response = await axios.get(`http://localhost:3002/profile/name/${userId}`);
-                console.log('Respuesta del servidor:', response.data);
-
                 if (response.data && response.data.name) {
                     setName(response.data.name);  // Actualizar el estado con el nombre
                 } else {
                     setError('Nombre de usuario no encontrado.');
                 }
             } catch (err) {
-                console.error('Error al obtener el nombre del usuario:', err);
                 setError('Error fetching user name, please try again.');
             }
         };
@@ -48,16 +43,14 @@ const Profile = ({ userId }) => {
         e.preventDefault();
 
         try {
-            // Aquí podrías enviar los datos actualizados a la API para almacenarlos en la base de datos
-            await axios.put(`http://localhost:3002/profile/${userId}`, {
+            // Realizar la solicitud PUT para actualizar el perfil del usuario
+            await axios.put(`http://localhost:3002/profile/update/${userId}`, {
                 name,
                 email,
             });
 
-            // Maneja el caso de éxito
             alert('Profile updated successfully!');
         } catch (err) {
-            // Manejo de errores
             setError('Something went wrong, please try again.');
         }
     };
@@ -69,7 +62,7 @@ const Profile = ({ userId }) => {
                 <input
                     type="text"
                     placeholder="Enter your name"
-                    value={name}  // Aquí debería mostrarse el nombre preescrito
+                    value={name}  // Mostrar el nombre preescrito
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
