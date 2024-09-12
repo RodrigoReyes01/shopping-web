@@ -37,7 +37,7 @@ const Result = () => {
           {results.map((result) => (
             <div key={result.id} className="result-item" onClick={() => navigate(`/plaza/${result.id}`)}>
               <h3>{result.title}</h3>
-              <p>Company: {result.company}</p>
+              <p>Industry: {result.industry}</p>
               <p>Location: {result.location}</p>
               <p>Salary: ${result.salary}</p>
             </div>
