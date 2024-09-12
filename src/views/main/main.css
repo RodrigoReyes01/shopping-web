@@ -35,7 +35,7 @@ body.main-page {
     width: 100%;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between; /* Asegura que los elementos estén en los extremos */
+    justify-content: space-between;
     align-items: center;
     position: absolute;
     top: 0;
@@ -48,11 +48,10 @@ body.main-page {
 }
 
 .header img {
-    width: 30px;
+    width: 24px;
     height: auto;
     margin-right: 10px;
-    margin-bottom: 10px;
-    margin-left: 10px;
+    margin-bottom: 15px;
 }
 
 .header h1 {
@@ -82,46 +81,156 @@ body.main-page {
 }
 
 .main-container h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 2rem;
     font-weight: 600;
+    /* Alinea el título a la izquierda */
+    text-align: left;
+    width: 100%; /* Asegúrate de que ocupe todo el ancho del contenedor */
+    max-width: 600px; /* Mantén el mismo ancho que los componentes */
+    margin-left: 0; /* Ajusta si es necesario para quitar márgenes adicionales */
 }
 
-/* Styling the search bar and selectors */
-.search-bar, select {
-    width: 80%;
-    max-width: 600px;
-    padding: 14px 20px;
-    border-radius: 50px;
+
+/* Contenedor principal para centrar todos los elementos */
+.selectors {
+    width: 100%;
+    max-width: 600px; /* Aseguramos que todos los elementos estén alineados y centrados */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Section Wrapper */
+.section-wrapper {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.section-header {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.section-header .section-icon {
+    width: 24px;
+    margin-right: 10px;
+}
+
+.section-header span {
+    font-size: 1rem;
+    color: white;
+}
+
+/* Selectors styling */
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
     border: none;
     background: rgba(255, 255, 255, 0.1);
-    color: #F0F0F0;
-    font-size: 1.25rem;
-    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 1rem;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-    margin-bottom: 1rem;
-}
-
-.search-bar::placeholder, select option {
-    color: #95a1a9;
-}
-
-select {
-    appearance: none; /* Elimina el estilo predeterminado */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M7 10l5 5 5-5z"/></svg>'); /* Icono de dropdown */
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
     background-position: right 15px top 50%;
-    background-size: 15px;
-    padding-right: 50px;
-    color: white;
 }
 
 select:focus {
     outline: none;
 }
 
-/* Ajuste del botón para que quede bien posicionado debajo de los selectores */
+/* Section Body */
+.section-body {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    width: 100%;
+}
+
+/* Location Cards */
+.location-cards {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between; /* Esto ajusta las tarjetas para que ocupen todo el espacio disponible */
+    width: 100%;
+    padding-left: 0; /* Elimina padding extra en el lado izquierdo */
+    padding-right: 0; /* Elimina padding extra en el lado derecho */
+}
+
+.location-card {
+    flex: 1; /* Esto asegura que cada tarjeta ocupe un espacio proporcionalmente igual */
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    cursor: pointer;
+    padding: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: border 0.3s ease;
+    position: relative;
+    color: white;
+    max-width: 100px; /* Ajusta el ancho máximo de cada tarjeta si es necesario */
+}
+
+.location-card.selected {
+    box-shadow: inset 0 0 0 2px #ffffff;
+}
+
+.location-title {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    color: white;
+    font-size: 0.85rem;
+}
+
+
+/* Salary Slider */
+.salary-slider {
+    -webkit-appearance: none;
+    width: 90%;
+    height: 8px;
+    background: #2b85e0;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.salary-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.salary-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+/* Button */
 button.search-button {
     padding: 14px 30px;
     background-color: #2b85e0;
@@ -131,9 +240,8 @@ button.search-button {
     font-size: 1.25rem;
     cursor: pointer;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    margin-top: 1.5rem; /* Incrementar margen superior para separarlo de los selectores */
-    width: 100%; /* Para que el botón tome el ancho completo del contenedor */
-    max-width: 600px; /* Asegurar que tenga un ancho máximo similar a los selectores */
+    margin-top: 1.5rem;
+    width: 100%;
 }
 
 button.search-button:hover {

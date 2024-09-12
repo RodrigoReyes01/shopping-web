@@ -2,13 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from './W.png';
 import settingsIcon from './Settings.png';
+import industryIcon from './Industry.png';
+import locationIcon from './Location.png';
+import salaryIcon from './Salary.png';
+
+// Importa las imágenes para las ubicaciones
+import remoteImage from './Remote.png';
+import newYorkImage from './Newyork.jpeg';
+import losAngelesImage from './Losangeles.jpeg';
+import sanFranciscoImage from './Sanfrancisco.webp';
+
 import './main.css';
+
+const salaryRanges = [];
+for (let i = 10000; i <= 200000; i += 10000) {
+  salaryRanges.push({ label: `$${i} - $${i + 10000}` });
+}
 
 const Main = () => {
   const navigate = useNavigate();
   const [industry, setIndustry] = useState('');
   const [location, setLocation] = useState('');
-  const [salary, setSalary] = useState('');
+  const [salaryIndex, setSalaryIndex] = useState(0); // Usamos el índice para controlar el rango
 
   // Asegurarse de que el CSS con la clase main-page se aplique correctamente
   useEffect(() => {
@@ -19,7 +34,16 @@ const Main = () => {
   }, []);
 
   const handleSearch = () => {
-    navigate('/result', { state: { industry, location, salary } });
+    const salaryRange = salaryRanges[salaryIndex]; // Obtenemos el rango de salario seleccionado
+    navigate('/result', { state: { industry, location, salaryRange } });
+  };
+
+  const handleLocationClick = (loc) => {
+    setLocation(loc); // Cambia la ubicación seleccionada
+  };
+
+  const handleSalaryChange = (e) => {
+    setSalaryIndex(e.target.value); // Cambia el índice del slider
   };
 
   return (
@@ -33,34 +57,72 @@ const Main = () => {
           <img src={settingsIcon} alt="Settings" />
         </button>
       </header>
+
       <h1>Look for your Perfect Job . . .</h1>
+
       <div className="selectors">
-        <select value={industry} onChange={(e) => setIndustry(e.target.value)}>
-          <option value="">Select Industry</option>
-          <option value="Technology">Technology</option>
-          <option value="Data">Data</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Design">Design</option>
-          <option value="Sales">Sales</option>
-        </select>
 
-        <select value={location} onChange={(e) => setLocation(e.target.value)}>
-          <option value="">Select Location</option>
-          <option value="Remote">Remote</option>
-          <option value="New York, USA">New York, USA</option>
-          <option value="Los Angeles, USA">Los Angeles, USA</option>
-          <option value="San Francisco, USA">San Francisco, USA</option>
-        </select>
+        {/* Industry Section */}
+        <div className="section-wrapper">
+          <div className="section-header">
+            <img src={industryIcon} alt="Industry Icon" className="section-icon" />
+            <span>Industry</span>
+          </div>
+          <div className="section-body">
+            <select value={industry} onChange={(e) => setIndustry(e.target.value)}>
+              <option value="">Select Industry</option>
+              <option value="Technology">Technology</option>
+              <option value="Data">Data</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Design">Design</option>
+              <option value="Sales">Sales</option>
+            </select>
+          </div>
+        </div>
 
-        <select value={salary} onChange={(e) => setSalary(e.target.value)}>
-          <option value="">Select Salary Range</option>
-          <option value="45000-60000">45,000 - 60,000</option>
-          <option value="60000-80000">60,000 - 80,000</option>
-          <option value="80000-100000">80,000 - 100,000</option>
-          <option value="100000-120000">100,000 - 120,000</option>
-          <option value="120000-150000">120,000 - 150,000</option>
-          <option value="150000-200000">150,000 - 200,000</option>
-        </select>
+        {/* Location Section */}
+        <div className="section-wrapper">
+          <div className="section-header">
+            <img src={locationIcon} alt="Location Icon" className="section-icon" />
+            <span>Location</span>
+          </div>
+          <div className="location-cards">
+            {[
+              { name: 'Remote', image: remoteImage },
+              { name: 'New York', image: newYorkImage },
+              { name: 'Los Angeles', image: losAngelesImage },
+              { name: 'San Francisco', image: sanFranciscoImage }
+            ].map((loc) => (
+              <div
+                key={loc.name}
+                className={`location-card ${location === loc.name ? 'selected' : ''}`}
+                onClick={() => handleLocationClick(loc.name)}
+                style={{ backgroundImage: `url(${loc.image})` }}
+              >
+                <div className="location-title">{loc.name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Salary Section */}
+        <div className="section-wrapper">
+          <div className="section-header">
+            <img src={salaryIcon} alt="Salary Icon" className="section-icon" />
+            <span>Salary</span>
+          </div>
+          <div className="section-body">
+            <input
+              type="range"
+              min="0"
+              max={salaryRanges.length - 1}
+              value={salaryIndex}
+              onChange={handleSalaryChange}
+              className="salary-slider"
+            />
+            <p>{salaryRanges[salaryIndex].label}</p>
+          </div>
+        </div>
 
         <button onClick={handleSearch} className="search-button">Search</button>
       </div>
