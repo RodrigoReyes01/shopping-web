@@ -33,10 +33,11 @@ html, body {
 }
 
 .results-page h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 20px;
     font-weight: 600;
-    text-align: center; /* Centra el texto horizontalmente */
+    margin-left: 20px;
+    text-align: left; /* Centra el texto horizontalmente */
     width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
 }
 
@@ -55,7 +56,7 @@ html, body {
 .result-item {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     margin: 20px auto;
     width: 100%;
@@ -72,7 +73,7 @@ html, body {
 
 .result-item h3 {
     margin: 0 0 10px 0;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #F0F0F0;
 }
 

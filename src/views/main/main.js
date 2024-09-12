@@ -66,11 +66,11 @@ const Main = () => {
         <div className="section-wrapper">
           <div className="section-header">
             <img src={industryIcon} alt="Industry Icon" className="section-icon" />
-            <span>Industry</span>
+            <span>Select Industry</span>
           </div>
           <div className="section-body">
             <select value={industry} onChange={(e) => setIndustry(e.target.value)}>
-              <option value="">Select Industry</option>
+              <option value="">-</option>
               <option value="Technology">Technology</option>
               <option value="Data">Data</option>
               <option value="Marketing">Marketing</option>
@@ -84,7 +84,7 @@ const Main = () => {
         <div className="section-wrapper">
           <div className="section-header">
             <img src={locationIcon} alt="Location Icon" className="section-icon" />
-            <span>Location</span>
+            <span>Select Location</span>
           </div>
           <div className="location-cards">
             {[
@@ -109,7 +109,7 @@ const Main = () => {
         <div className="section-wrapper">
           <div className="section-header">
             <img src={salaryIcon} alt="Salary Icon" className="section-icon" />
-            <span>Salary</span>
+            <span>Select Salary</span>
           </div>
           <div className="section-body">
             <input
