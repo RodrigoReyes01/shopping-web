@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { sequelize } = require('./models'); // Importar la configuración de Sequelize
 const resultRoutes = require('./routes/ResultRoutes');
-const authRoutes = require('./routes/AuthRoutes'); // Asegúrate de que esta ruta esté correctamente importada
+const authRoutes = require('./routes/AuthRoutes'); 
 const dotenv = require('dotenv');
 
 dotenv.config(); // Cargar variables del archivo .env

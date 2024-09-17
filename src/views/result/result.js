@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './result.css';
-import resultIcon from './result.png'; // Asegúrate de que la ruta al ícono sea correcta
+import resultIcon from './result.png'; 
 
 const Result = () => {
   const [results, setResults] = useState([]);

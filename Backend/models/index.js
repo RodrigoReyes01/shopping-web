@@ -7,7 +7,7 @@ const sequelize = new Sequelize('shoppingweb', 'user', 'password', {
   port: 3308,
 });
 
-// Definir los modelos
+// Definicion de los modelos
 const User = require('./user')(sequelize, Sequelize.DataTypes);
 const JobPost = require('./jobpost')(sequelize, Sequelize.DataTypes);
 

@@ -25,7 +25,6 @@ const Main = () => {
   const [location, setLocation] = useState('');
   const [salaryIndex, setSalaryIndex] = useState(0); // Usamos el índice para controlar el rango
 
-  // Asegurarse de que el CSS con la clase main-page se aplique correctamente
   useEffect(() => {
     document.body.classList.add('main-page');
     return () => {

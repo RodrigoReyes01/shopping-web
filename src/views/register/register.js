@@ -37,7 +37,7 @@ const Register = () => {
             // Redirige al login después del registro exitoso
             navigate('/main');
         } catch (err) {
-            // Si ocurre un error, muestra un mensaje
+            // Si ocurre un error, muestra el mensaje:
             setError('Something went wrong, try again');
         }
     };

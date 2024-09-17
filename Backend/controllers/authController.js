@@ -1,5 +1,5 @@
 //backend/controllers/authControllers.js
-const { User } = require('../models'); // Asegúrate de que la importación sea correcta
+const { User } = require('../models'); 
 
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
