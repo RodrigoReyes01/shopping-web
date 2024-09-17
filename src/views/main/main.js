@@ -64,13 +64,13 @@ const Main = () => {
 
         {/* Industry Section */}
         <div className="section-wrapper">
-          <div className="section-header">
-            <img src={industryIcon} alt="Industry Icon" className="section-icon" />
-            <span>Select Industry</span>
-          </div>
           <div className="section-body">
+            <div className="section-header">
+              <img src={industryIcon} alt="Industry Icon" />
+              <span>Select Industry</span>
+            </div>
             <select value={industry} onChange={(e) => setIndustry(e.target.value)}>
-              <option value="">-</option>
+              <option value=""></option>
               <option value="Technology">Technology</option>
               <option value="Data">Data</option>
               <option value="Marketing">Marketing</option>
@@ -82,36 +82,38 @@ const Main = () => {
 
         {/* Location Section */}
         <div className="section-wrapper">
-          <div className="section-header">
-            <img src={locationIcon} alt="Location Icon" className="section-icon" />
-            <span>Select Location</span>
-          </div>
-          <div className="location-cards">
-            {[
-              { name: 'Remote', image: remoteImage },
-              { name: 'New York', image: newYorkImage },
-              { name: 'Los Angeles', image: losAngelesImage },
-              { name: 'San Francisco', image: sanFranciscoImage }
-            ].map((loc) => (
-              <div
-                key={loc.name}
-                className={`location-card ${location === loc.name ? 'selected' : ''}`}
-                onClick={() => handleLocationClick(loc.name)}
-                style={{ backgroundImage: `url(${loc.image})` }}
-              >
-                <div className="location-title">{loc.name}</div>
-              </div>
-            ))}
+          <div className="section-body">
+            <div className="section-header">
+              <img src={locationIcon} alt="Location Icon" />
+              <span>Select Location</span>
+            </div>
+            <div className="location-cards">
+              {[
+                { name: 'Remote', image: remoteImage },
+                { name: 'New York', image: newYorkImage },
+                { name: 'Los Angeles', image: losAngelesImage },
+                { name: 'San Francisco', image: sanFranciscoImage }
+              ].map((loc) => (
+                <div
+                  key={loc.name}
+                  className={`location-card ${location === loc.name ? 'selected' : ''}`}
+                  onClick={() => handleLocationClick(loc.name)}
+                  style={{ backgroundImage: `url(${loc.image})` }}
+                >
+                  <div className="location-title">{loc.name}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Salary Section */}
         <div className="section-wrapper">
-          <div className="section-header">
-            <img src={salaryIcon} alt="Salary Icon" className="section-icon" />
-            <span>Select Salary</span>
-          </div>
           <div className="section-body">
+            <div className="section-header">
+              <img src={salaryIcon} alt="Salary Icon" />
+              <span>Select Salary</span>
+            </div>
             <input
               type="range"
               min="0"
@@ -124,10 +126,14 @@ const Main = () => {
           </div>
         </div>
 
-        <button onClick={handleSearch} className="search-button">Search</button>
+        <button className="result-button" onClick={handleSearch}>
+          Search
+        </button>
       </div>
     </div>
-  );
+);
+
+
 };
 
 export default Main;
