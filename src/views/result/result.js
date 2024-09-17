@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './result.css';
+import resultIcon from './result.png'; // Asegúrate de que la ruta al ícono sea correcta
 
 const Result = () => {
   const [results, setResults] = useState([]);
@@ -30,23 +31,29 @@ const Result = () => {
 
   return (
     <div className="results-page">
+      {/* Header con botón "Back to Main" */}
+      <div className="header">
+        <button className="back-to-main-button" onClick={() => navigate('/main')}>
+         ←
+        </button>
+      </div>
+
       <div className="results-container">
         <h2>Results</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <div className="results-list">
           {results.map((result) => (
             <div key={result.id} className="result-item" onClick={() => navigate(`/plaza/${result.id}`)}>
-              <h3>{result.title}</h3>
-              <p>Industry: {result.industry}</p>
-              <p>Location: {result.location}</p>
-              <p>Salary: ${result.salary}</p>
+              <img src={resultIcon} alt="Result icon" /> {/* Icono de result */}
+              <div>
+                <h3>{result.title}</h3>
+                <p>Industry: {result.industry}</p>
+                <p>Location: {result.location}</p>
+                <p>Salary: ${result.salary}</p>
+              </div>
             </div>
           ))}
         </div>
-        <button className="back-to-main-button" onClick={() => navigate('/main')}>
-             Go Back to Main
-        </button>
-
       </div>
     </div>
   );
