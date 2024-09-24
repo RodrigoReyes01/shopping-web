@@ -1,3 +1,4 @@
+//Backend/models/jobpost.js
 module.exports = (sequelize, DataTypes) => {
   const JobPost = sequelize.define('job_posts', {
     title: {

@@ -1,3 +1,4 @@
+//Backend/controllers/plazaController.js
 const { JobPost } = require('../models');
 
 exports.getPlazaById = async (req, res) => {

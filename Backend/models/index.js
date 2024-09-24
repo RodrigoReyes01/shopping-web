@@ -1,3 +1,4 @@
+//Backend/models/index.js
 const Sequelize = require('sequelize');
 
 // Configurar Sequelize con los datos de tu DB en el puerto 3308

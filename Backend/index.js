@@ -1,3 +1,4 @@
+//Backend/index.js
 const express = require('express');
 const cors = require('cors');
 const { sequelize } = require('./models'); // Importar la configuración de Sequelize
