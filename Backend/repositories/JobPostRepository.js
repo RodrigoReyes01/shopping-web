@@ -1,23 +1,51 @@
 // Backend/repositories/JobPostRepository.js
+const { JobPost } = require('../models/jobpost');
+
 class JobPostRepository {
-    constructor(db) {
-      this.db = db;
+    constructor() {
+        this.db = JobPost; // Puedes asignar directamente `JobPost`
     }
-  
+
+    // Obtener todos los jobposts
     async getAllJobPosts() {
-      return await this.db.JobPost.findAll();
+        return await this.db.findAll();
     }
-  
+
+    // Obtener un jobpost por ID
     async getJobPostById(id) {
-      return await this.db.JobPost.findByPk(id);
+        return await this.db.findByPk(id);
     }
-  
+
+    // Obtener jobposts con condiciones específicas
     async getFilteredJobPosts(conditions) {
-      return await this.db.JobPost.findAll({ where: conditions });
+        return await this.db.findAll({ where: conditions });
     }
-  
-    // Otros métodos necesarios para interactuar con JobPost
-  }
-  
-  module.exports = JobPostRepository;
-  
+
+    // Crear un nuevo jobpost
+    async createJobPost(data) {
+        return await this.db.create(data);
+    }
+
+    // Actualizar un jobpost por ID
+    async updateJobPost(id, data) {
+        const jobPost = await this.db.findByPk(id);
+        if (jobPost) {
+            await jobPost.update(data);
+            return jobPost;
+        }
+        return null;
+    }
+
+    // Eliminar un jobpost por ID
+    async deleteJobPost(id) {
+        const jobPost = await this.db.findByPk(id);
+        if (jobPost) {
+            await jobPost.destroy();
+            return true;
+        }
+        return false;
+    }
+}
+
+// Exportar una instancia de `JobPostRepository`
+module.exports = JobPostRepository;

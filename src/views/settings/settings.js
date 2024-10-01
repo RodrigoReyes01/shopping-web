@@ -25,14 +25,14 @@ const Settings = () => {
     };
 
     const handleupdateprofile = () => {
-        navigate('/profile'); // Redirige a la página principal (Main)
+        navigate('/jobposts'); // Redirige a la página principal (Main)
     };
 
     return (
         <div className="settings-container">
             <h2>Ajustes</h2>
             <button className="update-button" onClick={handleupdateprofile}>
-                Update Profile
+                Edit Job Posts
             </button>
             <button className="back-button" onClick={handleBackToMain}>
                 Back

@@ -5,6 +5,7 @@ const { sequelize } = require('./models'); // Importar la configuración de Sequ
 const resultRoutes = require('./routes/ResultRoutes');
 const authRoutes = require('./routes/AuthRoutes'); 
 const dotenv = require('dotenv');
+const jobPostRoutes = require('./routes/jobPostRoutes');
 
 dotenv.config(); // Cargar variables del archivo .env
 
@@ -24,6 +25,8 @@ app.use(express.json());
 // Rutas
 app.use('/result', resultRoutes);  // Rutas de resultados de búsqueda
 app.use('/auth', authRoutes);  // Rutas de autenticación (login y register)
+app.use('/jobposts', jobPostRoutes);
+
 
 // Iniciar el servidor y sincronizar Sequelize
 sequelize.sync().then(() => {
@@ -33,3 +36,4 @@ sequelize.sync().then(() => {
 }).catch(err => {
   console.error('Error al conectar con la base de datos:', err);
 });
+

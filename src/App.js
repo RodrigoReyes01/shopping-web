@@ -8,6 +8,7 @@ import Result from './views/result/result';
 import Settings from './views/settings/settings';
 import Profile from './views/profile/profile';
 import Homepage from './views/homepage/homepage'
+import JobPosts from './views/jobposts/jobposts';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/homepage" element={<Homepage />} />
+        <Route path="/jobposts" element={<JobPosts />} />
       </Routes>
     </Router>
   );

@@ -1,5 +1,6 @@
 // Backend/services/JobPostService.js
-const { Op } = require('sequelize'); // Importar los operadores de Sequelize
+const { Op } = require('sequelize');
+const JobPostRepository = require('../repositories/JobPostRepository');
 
 class JobPostService {
   constructor(jobPostRepository) {
@@ -24,7 +25,7 @@ class JobPostService {
     if (filters.location) {
       conditions.push({
         location: {
-          [Op.like]: `%${filters.location}%`,  // Utiliza LIKE para coincidencias parciales
+          [Op.like]: `%${filters.location}%`, // Utiliza LIKE para coincidencias parciales
         },
       });
     }
@@ -67,7 +68,21 @@ class JobPostService {
     });
   }
 
-  // Otros métodos de negocio para JobPost
+  // Crear un nuevo jobpost
+  async createJobPost(data) {
+    return await this.jobPostRepository.createJobPost(data);
+  }
+
+  // Actualizar un jobpost por ID
+  async updateJobPost(id, data) {
+    return await this.jobPostRepository.updateJobPost(id, data);
+  }
+
+  // Eliminar un jobpost por ID
+  async deleteJobPost(id) {
+    return await this.jobPostRepository.deleteJobPost(id);
+  }
 }
 
+// Aquí exportas una instancia, no la clase.
 module.exports = JobPostService;
