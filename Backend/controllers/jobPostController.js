@@ -17,7 +17,7 @@ exports.createJobPost = async (req, res) => {
 // Obtener todos los jobposts
 exports.getAllJobPosts = async (req, res) => {
     try {
-        const jobPosts = await JobPostService.getAllJobPosts();
+        const jobPosts = await jobPostService.getAllJobPosts();
         res.status(200).json(jobPosts);
     } catch (error) {
         res.status(500).json({ message: "Error fetching job posts", error });
@@ -28,7 +28,7 @@ exports.getAllJobPosts = async (req, res) => {
 exports.getJobPostById = async (req, res) => {
     const { id } = req.params;
     try {
-        const jobPosts = await JobPostService.getJobPostById(id);
+        const jobPosts = await jobPostService.getJobPostById(id);
         if (!jobPosts) {
             return res.status(404).json({ message: "Job post not found" });
         }
@@ -42,7 +42,7 @@ exports.getJobPostById = async (req, res) => {
 exports.updateJobPost = async (req, res) => {
     const { id } = req.params;
     try {
-        const updatedJobPost = await JobPostService.updateJobPost(id, req.body);
+        const updatedJobPost = await jobPostService.updateJobPost(id, req.body);
         if (!updatedJobPost) {
             return res.status(404).json({ message: "Job post not found" });
         }
@@ -56,7 +56,7 @@ exports.updateJobPost = async (req, res) => {
 exports.deleteJobPost = async (req, res) => {
     const { id } = req.params;
     try {
-        const deleted = await JobPostService.deleteJobPost(id);
+        const deleted = await jobPostService.deleteJobPost(id);
         if (!deleted) {
             return res.status(404).json({ message: "Job post not found" });
         }
