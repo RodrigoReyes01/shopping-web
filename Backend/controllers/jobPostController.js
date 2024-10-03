@@ -4,7 +4,7 @@ const JobPostService = require('../services/JobPostService');
 // Crear un nuevo jobpost
 exports.createJobPost = async (req, res) => {
     try {
-        const jobPosts = await JobPostService.createJobPosts(req.body);
+        const jobPosts = await JobPostService.createJobPost(req.body);
         res.status(201).json(jobPosts);
     } catch (error) {
         console.error("Error al crear el job post:", error);
