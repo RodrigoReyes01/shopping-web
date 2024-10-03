@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const jobPostController = require('../controllers/jobPostController');
 
+
 // Ruta para crear un nuevo jobpost
 router.post('/', jobPostController.createJobPost);
 

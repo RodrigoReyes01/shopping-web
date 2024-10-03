@@ -1,51 +1,51 @@
 // Backend/repositories/JobPostRepository.js
-const { JobPost } = require('../models/jobpost');
+const { JobPost } = require('../models');
 
 class JobPostRepository {
-    constructor() {
-        this.db = JobPost; // Puedes asignar directamente `JobPost`
-    }
+  constructor() {
+    this.db = JobPost; // Usar la instancia importada de `JobPost`
+  }
 
-    // Obtener todos los jobposts
-    async getAllJobPosts() {
-        return await this.db.findAll();
-    }
+  // Obtener todos los jobposts
+  async getAllJobPosts() {
+    return await this.db.findAll();
+  }
 
-    // Obtener un jobpost por ID
-    async getJobPostById(id) {
-        return await this.db.findByPk(id);
-    }
+  // Obtener un jobpost por ID
+  async getJobPostById(id) {
+    return await this.db.findByPk(id);
+  }
 
-    // Obtener jobposts con condiciones específicas
-    async getFilteredJobPosts(conditions) {
-        return await this.db.findAll({ where: conditions });
-    }
+  // Obtener jobposts con condiciones específicas
+  async getFilteredJobPosts(conditions) {
+    return await this.db.findAll({ where: conditions });
+  }
 
-    // Crear un nuevo jobpost
-    async createJobPost(data) {
-        return await this.db.create(data);
-    }
+  // Crear un nuevo jobpost
+  async createJobPost(data) {
+    return await this.db.create(data);
+  }
 
-    // Actualizar un jobpost por ID
-    async updateJobPost(id, data) {
-        const jobPost = await this.db.findByPk(id);
-        if (jobPost) {
-            await jobPost.update(data);
-            return jobPost;
-        }
-        return null;
+  // Actualizar un jobpost por ID
+  async updateJobPost(id, data) {
+    const jobPost = await this.db.findByPk(id);
+    if (jobPost) {
+      await jobPost.update(data);
+      return jobPost;
     }
+    return null;
+  }
 
-    // Eliminar un jobpost por ID
-    async deleteJobPost(id) {
-        const jobPost = await this.db.findByPk(id);
-        if (jobPost) {
-            await jobPost.destroy();
-            return true;
-        }
-        return false;
+  // Eliminar un jobpost por ID
+  async deleteJobPost(id) {
+    const jobPost = await this.db.findByPk(id);
+    if (jobPost) {
+      await jobPost.destroy();
+      return true;
     }
+    return false;
+  }
 }
 
-// Exportar una instancia de `JobPostRepository`
-module.exports = JobPostRepository;
+module.exports = JobPostRepository; 
+

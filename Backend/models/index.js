@@ -1,4 +1,4 @@
-//Backend/models/index.js
+// Backend/models/index.js
 const Sequelize = require('sequelize');
 
 // Configurar Sequelize con los datos de tu DB en el puerto 3308
@@ -6,6 +6,7 @@ const sequelize = new Sequelize('shoppingweb', 'user', 'password', {
   host: '127.0.0.1',
   dialect: 'mysql',
   port: 3308,
+  logging: console.log, // Agrega logging para depurar
 });
 
 // Definicion de los modelos

@@ -1,6 +1,6 @@
-//Backend/models/jobpost.js
+// Backend/models/jobpost.js
 module.exports = (sequelize, DataTypes) => {
-  const JobPost = sequelize.define('job_posts', {
+  const JobPost = sequelize.define('JobPost', { // Cambia a PascalCase
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     }
+  }, {
+    tableName: 'job_posts', // Nombre explícito de la tabla
+    timestamps: false, // Si no estás usando `createdAt` y `updatedAt`
   });
 
   return JobPost;

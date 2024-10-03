@@ -2,8 +2,11 @@
 const { Op } = require('sequelize');
 const JobPostRepository = require('../repositories/JobPostRepository');
 
+// Crear una instancia de `JobPostRepository`
+const jobPostRepository = new JobPostRepository();
+
 class JobPostService {
-  constructor(jobPostRepository) {
+  constructor() {
     this.jobPostRepository = jobPostRepository;
   }
 
@@ -84,5 +87,5 @@ class JobPostService {
   }
 }
 
-// Aquí exportas una instancia, no la clase.
+// Exportar una instancia de `JobPostService`
 module.exports = JobPostService;
