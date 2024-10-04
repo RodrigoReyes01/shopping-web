@@ -102,3 +102,21 @@ body.settings-page {
 .update-button:hover{
     background-color: green;
 }
+
+.docs-button {
+    background-color: #8a2be2;
+    color: white;
+    padding: 16px 20px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 17px;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.docs-button:hover {
+    background-color: #6b238e;
+}

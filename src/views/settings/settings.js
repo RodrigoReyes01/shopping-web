@@ -24,15 +24,23 @@ const Settings = () => {
         navigate('/main'); // Redirige a la página principal (Main)
     };
 
-    const handleupdateprofile = () => {
+    const handleUpdateProfile = () => {
         navigate('/jobposts'); // Redirige a la página principal (Main)
+    };
+
+    const handleOpenDocs = () => {
+        // Abre la página de documentación en una nueva pestaña
+        window.open('/docs', '_blank');
     };
 
     return (
         <div className="settings-container">
             <h2>Ajustes</h2>
-            <button className="update-button" onClick={handleupdateprofile}>
+            <button className="update-button" onClick={handleUpdateProfile}>
                 Edit Job Posts
+            </button>
+            <button className="docs-button" onClick={handleOpenDocs}>
+                View Documentation
             </button>
             <button className="back-button" onClick={handleBackToMain}>
                 Back
@@ -40,7 +48,6 @@ const Settings = () => {
             <button className="logout-button" onClick={handleLogout}>
                 Logout
             </button>
-            
         </div>
     );
 };

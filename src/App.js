@@ -9,6 +9,7 @@ import Settings from './views/settings/settings';
 import Profile from './views/profile/profile';
 import Homepage from './views/homepage/homepage'
 import JobPosts from './views/jobposts/jobposts';
+import Docs from './views/Docs/docs';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/jobposts" element={<JobPosts />} />
+        <Route path="/docs" element={<Docs />} />
       </Routes>
     </Router>
   );
