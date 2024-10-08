@@ -16,35 +16,38 @@ const Settings = () => {
     }, []);
 
     const handleLogout = () => {
-        // Aquí puedes limpiar cualquier estado de sesión si es necesario
-        navigate('/homepage'); // Redirige a la página de login
+        navigate('/homepage');
     };
 
     const handleBackToMain = () => {
-        navigate('/main'); // Redirige a la página principal (Main)
+        navigate('/main');
     };
 
     const handleUpdateProfile = () => {
-        navigate('/jobposts'); // Redirige a la página principal (Main)
+        navigate('/jobposts');
     };
 
     const handleOpenDocs = () => {
-        // Abre la página de documentación en una nueva pestaña
         window.open('/docs', '_blank');
     };
 
     return (
         <div className="settings-container">
             <h2>Ajustes</h2>
-            <button className="update-button" onClick={handleUpdateProfile}>
-                Edit Job Posts
-            </button>
-            <button className="docs-button" onClick={handleOpenDocs}>
-                View Documentation
-            </button>
-            <button className="back-button" onClick={handleBackToMain}>
-                Back
-            </button>
+            <div className="icon-grid">
+                <div className="icon-item" onClick={handleUpdateProfile}>
+                    <div className="icon-circle">Icon</div>
+                    <span>EDIT JobPosts</span>
+                </div>
+                <div className="icon-item" onClick={handleOpenDocs}>
+                    <div className="icon-circle">Icon</div>
+                    <span>View Documentation</span>
+                </div>
+                <div className="icon-item" onClick={handleBackToMain}>
+                    <div className="icon-circle">Icon</div>
+                    <span>Back to Home</span>
+                </div>
+            </div>
             <button className="logout-button" onClick={handleLogout}>
                 Logout
             </button>
