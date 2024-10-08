@@ -1,70 +1,79 @@
 .jobpost-container {
     display: flex;
     justify-content: space-between;
+    gap: 20px; /* Espacio entre los contenedores */
     padding: 20px;
     background-color: #2A2829; /* Verde Oscuro */
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    box-sizing: border-box;
+    overflow: hidden; /* Evita que sobresalga */
+    color: #F0EBE5; /* Aplica el color Alabaster al texto */
+}
+
+.dashboard, .jobpost-form, .jobpost-list {
+    height: calc(100vh - 40px); /* Ajusta la altura del contenedor restando el padding */
+    border-radius: 10px;
+    overflow-y: auto; /* Habilita el scroll vertical */
 }
 
 .dashboard {
     width: 20%;
     background-color: #DCD0BE; /* PASTEL GREY */
     padding: 10px;
-    border-radius: 10px;
-    color: #F0EBE5; /* ALABASTER */
+    color: #F0EBE5; /* Alabaster */
 }
 
 .jobpost-form {
     width: 30%;
     background-color: #97B4DE; /* Azul Cielo */
     padding: 20px;
-    border-radius: 10px;
-    color: #F0EBE5; /* ALABASTER */
+    color: #F0EBE5; /* Alabaster */
 }
 
 .jobpost-form input, 
-.jobpost-form textarea {
-    width: 100%;
-    margin-bottom: 10px;
+.jobpost-form textarea, 
+.jobpost-form select, 
+.jobpost-form button {
+    width: 98%; /* Ajusta el ancho para que no se salga del contenedor */
+    margin-bottom: 15px;
     padding: 10px;
     border: none;
     border-radius: 5px;
+    color: #263A99; /* Texto en azul */
     background-color: white; /* Fondo blanco para inputs */
-    color: #263A99; /* Texto en Azul */
+    box-sizing: border-box; /* Asegura que el padding no se sume al ancho */
 }
 
 .jobpost-form select {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
     background-color: #263A99; /* Azul para los dropdowns */
-    color: #F0EBE5; /* ALABASTER para el texto */
+    color: #F0EBE5; /* Alabaster para el texto */
 }
 
 .jobpost-form button {
     background-color: #263A99; /* Azul */
     color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-}
-
-.jobpost-list h3 {
-    color: #F0EBE5; /* Alabaster */
 }
 
 .jobpost-list {
     width: 40%;
     background-color: #DCD0BE; /* PASTEL GREY */
     padding: 20px;
-    border-radius: 10px;
+}
+
+.jobpost-list h3 {
+    color: #F0EBE5; /* Alabaster */
+    position: sticky; /* Mantiene el título fijo */
+    top: 0; /* Fija el título en la parte superior del contenedor */
+    background-color: #DCD0BE; /* Fondo del título para que no se solape con el contenido */
+    padding: 10px 0; /* Añade algo de padding para mejor apariencia */
+    z-index: 10; /* Asegura que el título esté por encima del contenido */
 }
 
 .jobpost-list ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .jobpost-list li {
@@ -76,7 +85,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #F0EBE5; /* ALABASTER */
+    color: #F0EBE5; /* Alabaster */
+    position: relative;
+}
+
+.jobpost-list li div {
+    width: 80%; /* Ajusta el ancho del contenido para dejar espacio a los botones */
 }
 
 .btn-update {
@@ -85,17 +99,18 @@
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-    margin-right: 5px;
+    position: absolute;
+    right: 70px; /* Ajusta la posición del botón */
 }
 
 .btn-delete {
-    background-color: #ff0000; /* RED */
+    background-color: #ff0000; /* Rojo */
     color: white;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    position: absolute;
+    right: 10px; /* Alinea el botón a la derecha */
 }
 
 /* Modal Styles */
@@ -120,16 +135,16 @@
     color: #F0EBE5; /* Alabaster */
 }
 
-.modal-content input,
-.modal-content textarea,
+.modal-content input, 
+.modal-content textarea, 
 .modal-content select {
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: white; /* Fondo blanco para inputs */
-    color: #263A99; /* Texto en Azul */
+    background-color: white;
+    color: #263A99; /* Azul */
 }
 
 .modal-content button {

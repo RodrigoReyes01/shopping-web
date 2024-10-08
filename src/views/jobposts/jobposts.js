@@ -172,7 +172,7 @@ const JobPosts = () => {
 
             {/* Job Post List */}
             <div className="jobpost-list">
-                <h3>Job Posts</h3>
+                <h3>Edit Job Posts</h3>
                 <ul>
                     {jobPosts.sort((a, b) => a.id - b.id).map(post => (
                         <li key={post.id}>
