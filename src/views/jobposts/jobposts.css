@@ -13,6 +13,10 @@
     color: #2A2829; /* CHARLESTON GREEN */
 }
 
+.chart-container {
+    margin-bottom: 20px;
+}
+
 .jobpost-form {
     width: 30%;
     background-color: #97B4DE; /* DARK SKY BLUE */
@@ -81,3 +85,4 @@
     border-radius: 5px;
     cursor: pointer;
 }
+

@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Doughnut } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend,
+} from 'chart.js';
 import './jobposts.css';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const JobPosts = () => {
     const [jobPosts, setJobPosts] = useState([]);
@@ -88,14 +97,45 @@ const JobPosts = () => {
         return acc;
     }, {});
 
+    // Configuración de los gráficos sin leyenda
+    const industryData = {
+        labels: Object.keys(industryCount),
+        datasets: [{
+            data: Object.values(industryCount),
+            backgroundColor: ['#263A99', '#97B4DE', '#DCD0BE', '#F0EBE5', '#2A2829'], // colores de la paleta
+        }]
+    };
+
+    const locationData = {
+        labels: Object.keys(locationCount),
+        datasets: [{
+            data: Object.values(locationCount),
+            backgroundColor: ['#263A99', '#97B4DE', '#DCD0BE', '#F0EBE5', '#2A2829'], // colores de la paleta
+        }]
+    };
+
+    const options = {
+        plugins: {
+            legend: {
+                display: false, // Oculta la leyenda
+            },
+        },
+    };
+
     return (
         <div className="jobpost-container">
             {/* Dashboard */}
             <div className="dashboard">
                 <h2>Dashboard</h2>
                 <p>Total Job Posts: {jobPosts.length}</p>
-                <p>Industria: {Object.entries(industryCount).map(([industry, count]) => `${industry}: ${count}`).join(', ')}</p>
-                <p>Ubicaciones: {Object.entries(locationCount).map(([location, count]) => `${location}: ${count}`).join(', ')}</p>
+                <div>
+                    <h3>Job Posts per Industry</h3>
+                    <Doughnut data={industryData} options={options} />
+                </div>
+                <div>
+                    <h3>Job Posts per Location</h3>
+                    <Doughnut data={locationData} options={options} />
+                </div>
             </div>
 
             {/* Job Post Creation Form */}
