@@ -1,0 +1,83 @@
+.jobpost-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #F0EBE5; /* ALABASTER */
+}
+
+.dashboard {
+    width: 20%;
+    background-color: #DCD0BE; /* PASTEL GREY */
+    padding: 10px;
+    border-radius: 10px;
+    color: #2A2829; /* CHARLESTON GREEN */
+}
+
+.jobpost-form {
+    width: 30%;
+    background-color: #97B4DE; /* DARK SKY BLUE */
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.jobpost-form input, 
+.jobpost-form select, 
+.jobpost-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.jobpost-form button {
+    background-color: #263A99; /* BLUE */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.jobpost-list {
+    width: 40%;
+    background-color: #DCD0BE; /* PASTEL GREY */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.jobpost-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.jobpost-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #97B4DE;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-update {
+    background-color: #263A99; /* BLUE */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btn-delete {
+    background-color: #ff0000; /* RED */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

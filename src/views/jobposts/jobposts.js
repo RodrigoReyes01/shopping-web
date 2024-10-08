@@ -1,69 +1,107 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './jobposts.css';
 
 const JobPosts = () => {
     const [jobPosts, setJobPosts] = useState([]);
-    const [newJobPost, setNewJobPost] = useState({ title: '', company: '', salary: '', location: '', industry: '' });
-    const [error, setError] = useState(''); // Estado para el manejo de errores
+    const [newJobPost, setNewJobPost] = useState({
+        title: '',
+        company: '',
+        salary: '',
+        location: '',
+        industry: '',
+        jobDescription: '',
+        jobRequirement: '',
+        date: ''
+    });
+    const [error, setError] = useState('');
+    const [salaryIndex, setSalaryIndex] = useState(0);
 
-    // Obtener todos los jobposts al cargar el componente
+    // Opciones de salario
+    const salaryOptions = [45000, 60000, 80000, 100000, 120000];
+
+    // Fetch job posts on component mount
     useEffect(() => {
         fetchJobPosts();
     }, []);
 
-    // Función para obtener todos los jobposts
     const fetchJobPosts = () => {
         axios.get('http://localhost:3002/jobposts')
             .then(response => setJobPosts(response.data))
             .catch(error => console.error('Error fetching job posts:', error));
     };
 
-    // Crear un nuevo jobpost
+    // Handle job post creation
     const handleCreate = () => {
-        // Validar campos
-        if (!newJobPost.title || !newJobPost.company || !newJobPost.salary || !newJobPost.location || !newJobPost.industry) {
+        if (!newJobPost.title || !newJobPost.company || !newJobPost.salary || !newJobPost.location || !newJobPost.industry || !newJobPost.jobDescription || !newJobPost.jobRequirement || !newJobPost.date) {
             setError('Todos los campos son obligatorios');
             return;
         }
 
         axios.post('http://localhost:3002/jobposts', newJobPost)
             .then(response => {
-                console.log('Job Post Created:', response.data);
-                fetchJobPosts(); // Refresca la lista de jobposts
-                setNewJobPost({ title: '', company: '', salary: '', location: '', industry: '' }); // Limpia el formulario
-                setError(''); // Limpiar el mensaje de error si todo sale bien
+                fetchJobPosts();
+                setNewJobPost({
+                    title: '',
+                    company: '',
+                    salary: '',
+                    location: '',
+                    industry: '',
+                    jobDescription: '',
+                    jobRequirement: '',
+                    date: ''
+                });
+                setError('');
             })
-            .catch(error => {
-                console.error('Error creating job post:', error.response?.data || error);
-                setError('Error creando el job post');
-            });
+            .catch(error => setError('Error creando el job post'));
     };
 
-    // Actualizar un jobpost
+    // Handle job post update
     const handleUpdate = (id) => {
-        // Actualiza solo los campos necesarios (puedes cambiar `updatedPost` a lo que necesites)
         const updatedPost = { title: 'Updated Title' };
         axios.put(`http://localhost:3002/jobposts/${id}`, updatedPost)
-            .then(response => {
-                setJobPosts(jobPosts.map(post => (post.id === id ? response.data : post)));
-            })
+            .then(response => setJobPosts(jobPosts.map(post => (post.id === id ? response.data : post))))
             .catch(error => console.error('Error updating job post:', error));
     };
 
-    // Eliminar un jobpost
+    // Handle job post delete
     const handleDelete = (id) => {
         axios.delete(`http://localhost:3002/jobposts/${id}`)
             .then(() => setJobPosts(jobPosts.filter(post => post.id !== id)))
             .catch(error => console.error('Error deleting job post:', error));
     };
 
-    return (
-        <div>
-            <h1>Job Posts</h1>
-            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Muestra el mensaje de error si existe */}
+    // Handle salary change with slider
+    const handleSalaryChange = (e) => {
+        setSalaryIndex(e.target.value);
+        setNewJobPost({ ...newJobPost, salary: salaryOptions[e.target.value] });
+    };
 
-            {/* Formulario para crear un nuevo jobpost */}
-            <div>
+    // Calculate job post statistics
+    const industryCount = jobPosts.reduce((acc, post) => {
+        acc[post.industry] = (acc[post.industry] || 0) + 1;
+        return acc;
+    }, {});
+
+    const locationCount = jobPosts.reduce((acc, post) => {
+        acc[post.location] = (acc[post.location] || 0) + 1;
+        return acc;
+    }, {});
+
+    return (
+        <div className="jobpost-container">
+            {/* Dashboard */}
+            <div className="dashboard">
+                <h2>Dashboard</h2>
+                <p>Total Job Posts: {jobPosts.length}</p>
+                <p>Industria: {Object.entries(industryCount).map(([industry, count]) => `${industry}: ${count}`).join(', ')}</p>
+                <p>Ubicaciones: {Object.entries(locationCount).map(([location, count]) => `${location}: ${count}`).join(', ')}</p>
+            </div>
+
+            {/* Job Post Creation Form */}
+            <div className="jobpost-form">
+                <h3>Crear Job Post</h3>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <input
                     type="text"
                     placeholder="Title"
@@ -76,40 +114,65 @@ const JobPosts = () => {
                     value={newJobPost.company}
                     onChange={e => setNewJobPost({ ...newJobPost, company: e.target.value })}
                 />
+                <select onChange={e => setNewJobPost({ ...newJobPost, location: e.target.value })}>
+                    <option value="">Select Location</option>
+                    <option value="Remote">Remote</option>
+                    <option value="New York">New York</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="San Francisco">San Francisco</option>
+                </select>
                 <input
-                    type="text"
-                    placeholder="Salary"
-                    value={newJobPost.salary}
-                    onChange={e => setNewJobPost({ ...newJobPost, salary: e.target.value })}
+                    type="range"
+                    min="0"
+                    max={salaryOptions.length - 1}
+                    value={salaryIndex}
+                    onChange={handleSalaryChange}
                 />
+                <p>Salary: ${salaryOptions[salaryIndex]}</p>
+                <select onChange={e => setNewJobPost({ ...newJobPost, industry: e.target.value })}>
+                    <option value="">Select Industry</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Data">Data</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Design">Design</option>
+                    <option value="Sales">Sales</option>
+                </select>
+                <textarea
+                    placeholder="Job Description"
+                    value={newJobPost.jobDescription}
+                    onChange={e => setNewJobPost({ ...newJobPost, jobDescription: e.target.value })}
+                ></textarea>
+                <textarea
+                    placeholder="Job Requirement"
+                    value={newJobPost.jobRequirement}
+                    onChange={e => setNewJobPost({ ...newJobPost, jobRequirement: e.target.value })}
+                ></textarea>
                 <input
                     type="text"
-                    placeholder="Location"
-                    value={newJobPost.location}
-                    onChange={e => setNewJobPost({ ...newJobPost, location: e.target.value })}
-                />
-                <input
-                    type="text"
-                    placeholder="Industry"
-                    value={newJobPost.industry}
-                    onChange={e => setNewJobPost({ ...newJobPost, industry: e.target.value })}
+                    placeholder="Date (YYYY-MM-DDTHH:MM:SSZ)"
+                    value={newJobPost.date}
+                    onChange={e => setNewJobPost({ ...newJobPost, date: e.target.value })}
                 />
                 <button onClick={handleCreate}>Create Job Post</button>
             </div>
 
-            {/* Lista de todos los jobposts */}
-            <ul>
-                {jobPosts.map(post => (
-                    <li key={post.id}>
-                        <strong>{post.title}</strong> - {post.company} - {post.location} - {post.salary}
-                        <button onClick={() => handleUpdate(post.id)}>Update</button>
-                        <button onClick={() => handleDelete(post.id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
+            {/* Job Post List */}
+            <div className="jobpost-list">
+                <h3>Job Posts</h3>
+                <ul>
+                    {jobPosts.sort((a, b) => a.id - b.id).map(post => (
+                        <li key={post.id}>
+                            <div>
+                                <strong>{post.title}</strong> - {post.company} - {post.location} - ${post.salary}
+                            </div>
+                            <button className="btn-update" onClick={() => handleUpdate(post.id)}>Update</button>
+                            <button className="btn-delete" onClick={() => handleDelete(post.id)}>Delete</button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };
 
 export default JobPosts;
-
