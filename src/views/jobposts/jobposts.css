@@ -18,6 +18,7 @@
 
 .dashboard {
     width: 20%;
+    height: 98.5%;
     background-color: #DCD0BE; /* PASTEL GREY */
     padding: 10px;
     color: #F0EBE5; /* Alabaster */
@@ -25,6 +26,7 @@
 
 .jobpost-form {
     width: 30%;
+    height: 96%;
     background-color: #97B4DE; /* Azul Cielo */
     padding: 20px;
     color: #F0EBE5; /* Alabaster */
@@ -57,6 +59,7 @@
 
 .jobpost-list {
     width: 40%;
+    height: 96%;
     background-color: #DCD0BE; /* PASTEL GREY */
     padding: 20px;
 }
