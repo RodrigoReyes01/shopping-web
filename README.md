@@ -1,7 +1,8 @@
 
 # Workify
 
-A brief description of what this project does and who it's for
+> [!NOTE]
+>A brief description of what this project does and who it's for
 
 ## Problem description
 In today’s competitive and diverse job market, individuals seeking employment or new opportunities face the challenge of finding industries and roles that align with their unique interests and skills. There is a growing need for an effective tool that provides personalized job recommendations based on user preferences such as desired salary, work modality, and industry type. This tool should analyze these criteria against a comprehensive database of companies and industries, offering a curated list of jobs and industries that meet the user's expectations.
