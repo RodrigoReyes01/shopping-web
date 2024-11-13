@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const jobPostController = require('../controllers/jobPostController');
 
+console.log(jobPostController); // Esto debería mostrar todas las funciones exportadas
 
 // Ruta para crear un nuevo jobpost
 router.post('/', jobPostController.createJobPost);

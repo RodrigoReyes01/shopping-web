@@ -14,6 +14,11 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
+  redis:
+    image: redis:latest
+    container_name: shoppingweb_redis
+    ports:
+      - "6379:6379"  # Puerto para Redis
+
 volumes:
   db_data:
-

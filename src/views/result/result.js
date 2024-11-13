@@ -14,18 +14,25 @@ const Result = () => {
 
   useEffect(() => {
     const fetchResults = async () => {
+      const sanitizedSalary = salary || 'all'; // Asegúrate de que nunca sea una cadena vacía
+      console.log("Data sent to backend:", {
+        industry,
+        location: jobLocation,
+        salary: sanitizedSalary,
+      });
+  
       try {
         const response = await axios.post('http://localhost:3002/result', {
           industry,
           location: jobLocation,
-          salary
+          salary: sanitizedSalary, // Usar el salario validado
         });
         setResults(response.data);
       } catch (err) {
         setError('Error fetching results, please try again.');
       }
     };
-
+  
     fetchResults();
   }, [industry, jobLocation, salary]);
 
