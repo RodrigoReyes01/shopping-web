@@ -1,4 +1,4 @@
-// Backend/config/redisClient.js
+//config/redisClient.js
 const redis = require('redis');
 const dotenv = require('dotenv');
 
