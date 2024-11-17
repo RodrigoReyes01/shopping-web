@@ -1,4 +1,3 @@
-// Backend/controllers/jobPostController.js
 const JobPostService = require('../services/JobPostService');
 const redisClient = require('../../config/redisClient');
 const jobPostService = new JobPostService();
@@ -6,8 +5,7 @@ const jobPostService = new JobPostService();
 exports.createJobPost = async (req, res) => {
     try {
         const jobPosts = await jobPostService.createJobPost(req.body);
-        // Invalida todas las claves de búsqueda en el caché
-        await redisClient.del('jobposts:*');
+        await redisClient.del('jobposts:*'); // Invalida el caché global
         res.status(201).json(jobPosts);
     } catch (error) {
         console.error("Error al crear el job post:", error);
@@ -23,16 +21,10 @@ exports.updateJobPost = async (req, res) => {
             return res.status(404).json({ message: "Job post not found" });
         }
 
-        // Invalidar el caché del job post específico
         await redisClient.del(`jobposts:${id}`);
-
-        // Opcional: Invalidar cachés relacionados con búsquedas
-        const searchKeys = await redisClient.keys('jobposts:*'); // Obtener todas las claves relacionadas con búsquedas
+        const searchKeys = await redisClient.keys('jobposts:*');
         for (const key of searchKeys) {
-            if (key.includes('Technology') || key.includes('Remote')) {
-                // Invalidar claves relevantes (ajusta los filtros según tu lógica de negocio)
-                await redisClient.del(key);
-            }
+            await redisClient.del(key); // Invalida todas las claves relevantes
         }
 
         res.status(200).json(updatedJobPost);
@@ -41,8 +33,6 @@ exports.updateJobPost = async (req, res) => {
         res.status(500).json({ message: "Error updating job post", error });
     }
 };
-
-
 
 exports.deleteJobPost = async (req, res) => {
     const { id } = req.params;
@@ -65,7 +55,7 @@ exports.deleteJobPost = async (req, res) => {
 
 exports.getAllJobPosts = async (req, res) => {
     try {
-        const jobPosts = await jobPostService.getAllJobPosts(); // Implementa esto en tu servicio
+        const jobPosts = await jobPostService.getAllJobPosts();
         res.status(200).json(jobPosts);
     } catch (error) {
         console.error("Error al obtener los job posts:", error);
@@ -76,21 +66,17 @@ exports.getAllJobPosts = async (req, res) => {
 exports.getJobPostById = async (req, res) => {
     const { id } = req.params;
     try {
-        // Busca en el caché primero
         const cachedJobPost = await redisClient.get(`jobposts:${id}`);
         if (cachedJobPost) {
             return res.status(200).json(JSON.parse(cachedJobPost));
         }
 
-        // Si no está en caché, busca en la base de datos
         const jobPost = await jobPostService.getJobPostById(id);
         if (!jobPost) {
             return res.status(404).json({ message: "Job post not found" });
         }
 
-        // Almacena en caché para futuras solicitudes
         await redisClient.set(`jobposts:${id}`, JSON.stringify(jobPost));
-
         res.status(200).json(jobPost);
     } catch (error) {
         console.error("Error al obtener el job post:", error);
@@ -98,3 +84,38 @@ exports.getJobPostById = async (req, res) => {
     }
 };
 
+exports.getFilteredResults = async (req, res) => {
+    let { industry, location, salary } = req.body;
+
+    if (!salary || salary === '') {
+        salary = 'all';
+    }
+
+    const cacheKey = `jobposts:${industry}:${location}:${salary}`;
+    try {
+        const cachedResults = await redisClient.get(cacheKey);
+        if (cachedResults) {
+            return res.status(200).json(JSON.parse(cachedResults));
+        }
+
+        const filter = {};
+        if (industry) filter.industry = industry;
+        if (location) filter.location = location;
+
+        if (salary !== 'all') {
+            const salaryRange = salary.split('-');
+            if (salaryRange.length === 2) {
+                filter.salary = { $gte: parseInt(salaryRange[0]), $lte: parseInt(salaryRange[1]) };
+            } else {
+                filter.salary = parseInt(salary);
+            }
+        }
+
+        const jobPosts = await jobPostService.getFilteredJobPosts(filter);
+        await redisClient.setEx(cacheKey, 3600, JSON.stringify(jobPosts));
+        res.status(200).json(jobPosts);
+    } catch (error) {
+        console.error("Error en getFilteredResults:", error);
+        res.status(500).json({ message: error.message });
+    }
+};

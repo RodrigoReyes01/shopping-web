@@ -1,4 +1,5 @@
 // Backend/repositories/JobPostRepository.js
+const mongoose = require('mongoose');
 const JobPost = require('../models/jobpost');
 
 class JobPostRepository {
@@ -7,7 +8,7 @@ class JobPostRepository {
   }
 
   async getJobPostById(id) {
-    return await JobPost.findById(id);
+    return await JobPost.findById(mongoose.Types.ObjectId(id));
   }
 
   async getFilteredJobPosts(conditions) {
@@ -19,11 +20,11 @@ class JobPostRepository {
   }
 
   async updateJobPost(id, data) {
-    return await JobPost.findByIdAndUpdate(id, data, { new: true });
+    return await JobPost.findByIdAndUpdate(mongoose.Types.ObjectId(id), data, { new: true });
   }
 
   async deleteJobPost(id) {
-    return await JobPost.findByIdAndDelete(id);
+    return await JobPost.findByIdAndDelete(mongoose.Types.ObjectId(id));
   }
 }
 

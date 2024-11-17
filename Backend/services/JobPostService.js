@@ -2,29 +2,33 @@
 const JobPostRepository = require('../repositories/JobPostRepository');
 
 class JobPostService {
-  constructor() {
-    this.jobPostRepository = new JobPostRepository();
-  }
+    constructor() {
+        this.jobPostRepository = new JobPostRepository();
+    }
 
-  async getAllJobPosts() {
-    return await this.jobPostRepository.getAllJobPosts();
-  }
+    async getAllJobPosts() {
+        return await this.jobPostRepository.getAllJobPosts();
+    }
 
-  async getJobPostById(id) {
-    return await this.jobPostRepository.getJobPostById(id);
-  }
+    async getJobPostById(id) {
+        return await this.jobPostRepository.getJobPostById(id);
+    }
 
-  async createJobPost(data) {
-    return await this.jobPostRepository.createJobPost(data);
-  }
+    async getFilteredJobPosts(filters) {
+        return await this.jobPostRepository.getFilteredJobPosts(filters);
+    }
 
-  async updateJobPost(id, data) {
-    return await this.jobPostRepository.updateJobPost(id, data);
-  }
+    async createJobPost(data) {
+        return await this.jobPostRepository.createJobPost(data);
+    }
 
-  async deleteJobPost(id) {
-    return await this.jobPostRepository.deleteJobPost(id);
-  }
+    async updateJobPost(id, data) {
+        return await this.jobPostRepository.updateJobPost(id, data);
+    }
+
+    async deleteJobPost(id) {
+        return await this.jobPostRepository.deleteJobPost(id);
+    }
 }
 
 module.exports = JobPostService;
