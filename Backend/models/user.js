@@ -1,23 +1,11 @@
 // Backend/models/user.js
 
-const { Model } = require('sequelize');
+const mongoose = require('mongoose');
 
-// models/user.js
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
-  });
-  return User;
-};
+const UserSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+});
 
+module.exports = mongoose.model('User', UserSchema);

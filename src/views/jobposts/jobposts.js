@@ -1,3 +1,5 @@
+//src/views/jobposts/jobposts.js
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Doughnut } from 'react-chartjs-2';

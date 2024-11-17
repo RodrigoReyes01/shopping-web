@@ -1,3 +1,4 @@
+//src/views/main/main.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from './W.png';

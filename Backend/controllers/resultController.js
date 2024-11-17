@@ -1,39 +1,48 @@
 const { JobPost } = require('../models');
-const JobPostRepository = require('../repositories/JobPostRepository');
-const JobPostService = require('../services/JobPostService');
 const redisClient = require('../../config/redisClient');
-
-// Instancia el repositorio y servicio
-const jobPostRepository = new JobPostRepository({ JobPost });
-const jobPostService = new JobPostService(jobPostRepository);
 
 exports.getFilteredResults = async (req, res) => {
   let { industry, location, salary } = req.body;
 
   console.log("Request Body received:", { industry, location, salary });
 
-  // Si el salario no es válido, ajusta el valor
+  // Ajusta el valor del salario si no está definido
   if (!salary || salary === '') {
     console.warn("Salary is empty or undefined, setting to 'all'.");
-    salary = 'all'; // Ajusta según tu lógica (por ejemplo: '' significa sin filtro)
+    salary = 'all'; // Ajusta según tu lógica
   }
 
   const cacheKey = `jobposts:${industry}:${location}:${salary}`;
 
   try {
+    // Verificar si hay resultados en el caché
     const cachedResults = await redisClient.get(cacheKey);
     if (cachedResults) {
       console.log("Resultados obtenidos del caché.");
       return res.status(200).json(JSON.parse(cachedResults));
     }
 
-    const jobPosts = await jobPostService.getFilteredJobPosts({
-      industry,
-      location,
-      salary: salary === 'all' ? undefined : salary, // Si es 'all', no filtrar salario
-    });
+    // Construir el filtro dinámicamente para MongoDB
+    const filter = {};
+    if (industry) filter.industry = industry;
+    if (location) filter.location = location;
+    if (salary !== 'all') {
+      const salaryRange = salary.split('-'); // Supone que el salario es un rango como "45000-60000"
+      if (salaryRange.length === 2) {
+        filter.salary = { $gte: parseInt(salaryRange[0]), $lte: parseInt(salaryRange[1]) };
+      } else {
+        filter.salary = parseInt(salary); // Si es un valor exacto, úsalo directamente
+      }
+    }
 
+    console.log("MongoDB Filter:", filter);
+
+    // Consultar MongoDB con el filtro construido
+    const jobPosts = await JobPost.find(filter);
+
+    // Almacenar los resultados en el caché para futuras consultas
     await redisClient.setEx(cacheKey, 3600, JSON.stringify(jobPosts));
+
     res.status(200).json(jobPosts);
   } catch (error) {
     console.error("Error en getFilteredResults:", error);

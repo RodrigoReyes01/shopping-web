@@ -1,42 +1,15 @@
 // Backend/models/jobpost.js
-module.exports = (sequelize, DataTypes) => {
-  const JobPost = sequelize.define('JobPost', { // Cambia a PascalCase
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    company: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    industry: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    job_description: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    job_requirement: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    salary: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    }
-  }, {
-    tableName: 'job_posts', // Nombre explícito de la tabla
-    timestamps: false, // Si no estás usando `createdAt` y `updatedAt`
-  });
+const mongoose = require('mongoose');
 
-  return JobPost;
-};
+const JobPostSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  company: { type: String, required: true },
+  date: { type: Date, required: true },
+  location: { type: String, required: true },
+  industry: { type: String, required: true },
+  job_description: { type: String },
+  job_requirement: { type: String },
+  salary: { type: Number, required: true }
+});
+
+module.exports = mongoose.model('JobPost', JobPostSchema);

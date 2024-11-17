@@ -1,18 +1,13 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:8.0
-    container_name: shoppingweb_db
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: shoppingweb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+  mongo:
+    image: mongo
+    container_name: shoppingweb_mongo
     ports:
-      - "3308:3306"
+      - "27017:27017" # Puerto de MongoDB
     volumes:
-      - db_data:/var/lib/mysql
+      - mongo_data:/data/db
 
   redis:
     image: redis:latest
@@ -21,4 +16,4 @@ services:
       - "6379:6379"  # Puerto para Redis
 
 volumes:
-  db_data:
+  mongo_data:

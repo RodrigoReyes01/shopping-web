@@ -1,18 +1,15 @@
 // Backend/repositories/UserRepository.js
+const User = require('../models/user');
+
 class UserRepository {
-    constructor(db) {
-      this.db = db;
-    }
-  
-    async createUser(userData) {
-      return await this.db.User.create(userData);
-    }
-  
-    async getUserByEmail(email) {
-      return await this.db.User.findOne({ where: { email } });
-    }
-  
-    // Otros métodos necesarios para interactuar con User
+  async createUser(userData) {
+    return await User.create(userData);
   }
-  
-  module.exports = UserRepository;
+
+  async getUserByEmail(email) {
+    return await User.findOne({ email });
+  }
+}
+
+module.exports = UserRepository;
+
