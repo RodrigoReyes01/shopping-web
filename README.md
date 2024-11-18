@@ -55,6 +55,8 @@ These use cases illustrate how users interact with the app and how their expecta
 
 [Documentation Workify](https://docs.google.com/document/d/1aczHe1i6vp8QW6tMaUUsvUz5lks1y9bqNd5OMl4T_Iw/edit?usp=sharing)
 
+[Presentacion Workify](https://www.canva.com/design/DAGWPtHyl-I/CBWSneTJK4lLSM9GFBGM9Q/edit)
+
 
 ## Deployment
 
