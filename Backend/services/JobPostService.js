@@ -11,8 +11,10 @@ class JobPostService {
     }
 
     async getJobPostById(id) {
-        return await this.jobPostRepository.getJobPostById(id);
+      // Convierte el `id` en ObjectId para búsquedas en MongoDB
+      return await this.jobPostRepository.getJobPostById(id);
     }
+  
 
     async getFilteredJobPosts(filters) {
         return await this.jobPostRepository.getFilteredJobPosts(filters);

@@ -1,12 +1,15 @@
 // Backend/repositories/JobPostRepository.js
+const JobPost = require('../models/jobpost'); // Importa el modelo correctamente
+
 class JobPostRepository {
   async getAllJobPosts() {
     return await JobPost.find();
   }
 
   async getJobPostById(id) {
-    return await JobPost.findById(Number(id)); // Convierte el ID a número
+    return await JobPost.findById(id); // Mongoose automáticamente usa `_id`
   }
+
 
   async getFilteredJobPosts(conditions) {
     return await JobPost.find(conditions);

@@ -66,23 +66,18 @@ exports.getAllJobPosts = async (req, res) => {
 exports.getJobPostById = async (req, res) => {
     const { id } = req.params;
     try {
-        const cachedJobPost = await redisClient.get(`jobposts:${id}`);
-        if (cachedJobPost) {
-            return res.status(200).json(JSON.parse(cachedJobPost));
-        }
-
-        const jobPost = await jobPostService.getJobPostById(id);
+        const jobPost = await jobPostService.getJobPostById(id); // Busca usando `id`
         if (!jobPost) {
             return res.status(404).json({ message: "Job post not found" });
         }
 
-        await redisClient.set(`jobposts:${id}`, JSON.stringify(jobPost));
         res.status(200).json(jobPost);
     } catch (error) {
         console.error("Error al obtener el job post:", error);
         res.status(500).json({ message: "Error retrieving job post", error });
     }
 };
+
 
 exports.getFilteredResults = async (req, res) => {
     let { industry, location, salary } = req.body;

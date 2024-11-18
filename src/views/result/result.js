@@ -50,18 +50,18 @@ const Result = () => {
         <h2>Results</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <div className="results-list">
-          {results.map((result) => (
-            <div key={result._id} className="result-item" onClick={() => navigate(`/plaza/${result._id}`)}>
-              <img src={resultIcon} alt="Result icon" /> {/* Icono de result */}
-              <div>
-                <h3>{result.title}</h3>
-                <p>Industry: {result.industry}</p>
-                <p>Location: {result.location}</p>
-                <p>Salary: ${result.salary}</p>
-              </div>
+        {results.map((result) => (
+          <div key={result._id} className="result-item" onClick={() => navigate(`/plaza/${result._id}`)}>
+            <img src={resultIcon} alt="Result icon" /> {/* Icono de result */}
+            <div>
+              <h3>{result.title}</h3>
+              <p>Industry: {result.industry}</p>
+              <p>Location: {result.location}</p>
+              <p>Salary: ${result.salary}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
 
       </div>
     </div>

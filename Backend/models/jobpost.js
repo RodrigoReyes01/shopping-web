@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 
 const JobPostSchema = new mongoose.Schema({
-  _id: { type: Number }, // ID como número
   title: { type: String, required: true },
   company: { type: String, required: true },
   date: { type: Date, required: true },
@@ -13,6 +12,16 @@ const JobPostSchema = new mongoose.Schema({
   salary: { type: Number, required: true }
 });
 
-// Modelo
+// Convertir _id a id al responder
+JobPostSchema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform: function (doc, ret) {
+    ret.id = ret._id.toString(); // Asegúrate de convertir _id a string
+    delete ret._id;
+  }
+});
+
 module.exports = mongoose.model('JobPost', JobPostSchema);
+
 
