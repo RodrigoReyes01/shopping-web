@@ -1,5 +1,7 @@
 // Backend/repositories/JobPostRepository.js
 const JobPost = require('../models/jobpost'); // Importa el modelo correctamente
+const mongoose = require('mongoose');
+
 
 class JobPostRepository {
   async getAllJobPosts() {
@@ -20,12 +22,13 @@ class JobPostRepository {
   }
 
   async updateJobPost(id, data) {
-    return await JobPost.findByIdAndUpdate(Number(id), data, { new: true }); // Convierte el ID a número
+    return await JobPost.findByIdAndUpdate(id, data, { new: true });
   }
 
   async deleteJobPost(id) {
-    return await JobPost.findByIdAndDelete(Number(id)); // Convierte el ID a número
+      return await JobPost.findByIdAndDelete(id);
   }
+
 }
 
 module.exports = JobPostRepository;

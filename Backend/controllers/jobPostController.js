@@ -1,3 +1,7 @@
+// Backend/controllers/jobPostController.js
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
+
 const JobPostService = require('../services/JobPostService');
 const redisClient = require('../../config/redisClient');
 const jobPostService = new JobPostService();
@@ -16,16 +20,16 @@ exports.createJobPost = async (req, res) => {
 exports.updateJobPost = async (req, res) => {
     const { id } = req.params;
     try {
-        const updatedJobPost = await jobPostService.updateJobPost(id, req.body);
+        // Convertir `id` a ObjectId
+        const objectId = new ObjectId(id);
+
+        const updatedJobPost = await jobPostService.updateJobPost(objectId, req.body);
         if (!updatedJobPost) {
             return res.status(404).json({ message: "Job post not found" });
         }
 
+        // Invalida el caché del job post específico
         await redisClient.del(`jobposts:${id}`);
-        const searchKeys = await redisClient.keys('jobposts:*');
-        for (const key of searchKeys) {
-            await redisClient.del(key); // Invalida todas las claves relevantes
-        }
 
         res.status(200).json(updatedJobPost);
     } catch (error) {
@@ -37,7 +41,10 @@ exports.updateJobPost = async (req, res) => {
 exports.deleteJobPost = async (req, res) => {
     const { id } = req.params;
     try {
-        const deleted = await jobPostService.deleteJobPost(id);
+        // Convertir `id` a ObjectId
+        const objectId = new ObjectId(id);
+
+        const deleted = await jobPostService.deleteJobPost(objectId);
         if (!deleted) {
             return res.status(404).json({ message: "Job post not found" });
         }
