@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 
 const JobPostSchema = new mongoose.Schema({
+  _id: { type: Number }, // ID como número
   title: { type: String, required: true },
   company: { type: String, required: true },
   date: { type: Date, required: true },
@@ -12,4 +13,6 @@ const JobPostSchema = new mongoose.Schema({
   salary: { type: Number, required: true }
 });
 
+// Modelo
 module.exports = mongoose.model('JobPost', JobPostSchema);
+

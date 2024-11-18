@@ -12,7 +12,7 @@ exports.getFilteredResults = async (req, res) => {
     salary = 'all'; // Ajusta según tu lógica
   }
 
-  const cacheKey = `jobposts:${industry}:${location}:${salary}`;
+  const cacheKey = `jobposts:${industry}:${location || 'all'}:${salary}`;
 
   try {
     // Verificar si hay resultados en el caché
@@ -25,7 +25,8 @@ exports.getFilteredResults = async (req, res) => {
     // Construir el filtro dinámicamente para MongoDB
     const filter = {};
     if (industry) filter.industry = industry;
-    if (location) filter.location = location;
+    if (location && location.trim() !== '') filter.location = location; // Excluir location si está vacío o solo contiene espacios
+
     if (salary !== 'all') {
       const salaryRange = salary.split('-'); // Supone que el salario es un rango como "45000-60000"
       if (salaryRange.length === 2) {

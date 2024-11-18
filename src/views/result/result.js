@@ -51,7 +51,7 @@ const Result = () => {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <div className="results-list">
           {results.map((result) => (
-            <div key={result.id} className="result-item" onClick={() => navigate(`/plaza/${result.id}`)}>
+            <div key={result._id} className="result-item" onClick={() => navigate(`/plaza/${result._id}`)}>
               <img src={resultIcon} alt="Result icon" /> {/* Icono de result */}
               <div>
                 <h3>{result.title}</h3>
@@ -62,6 +62,7 @@ const Result = () => {
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );
