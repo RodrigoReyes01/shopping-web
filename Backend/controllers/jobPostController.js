@@ -8,14 +8,22 @@ const jobPostService = new JobPostService();
 
 exports.createJobPost = async (req, res) => {
     try {
+        // Crear el nuevo job post en la base de datos
         const jobPosts = await jobPostService.createJobPost(req.body);
-        await redisClient.del('jobposts:*'); // Invalida el caché global
+
+        // Invalidar todas las claves relacionadas con búsquedas
+        const searchKeys = await redisClient.keys('jobposts:*'); // Obtener todas las claves relacionadas
+        if (searchKeys.length > 0) {
+            await redisClient.del(...searchKeys); // Eliminar todas las claves relacionadas
+        }
+
         res.status(201).json(jobPosts);
     } catch (error) {
         console.error("Error al crear el job post:", error);
         res.status(500).json({ message: "Error creating job post", error: error.message });
     }
 };
+
 
 exports.updateJobPost = async (req, res) => {
     const { id } = req.params;
