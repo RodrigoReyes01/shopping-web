@@ -38,7 +38,7 @@ body.settings-page {
 }
 
 .icon-item {
-    background-color: #263A99;
+    background-color: #333333;
     color: #F0EBE5;
     border-radius: 16px;
     padding: 20px;
@@ -54,7 +54,7 @@ body.settings-page {
 }
 
 .icon-item:hover {
-    background-color: #97B4DE;
+    background-color: #808080;
 }
 
 .icon-circle {
@@ -67,7 +67,7 @@ body.settings-page {
     align-items: center;
     margin-bottom: 15px;
     font-size: 20px;
-    color: #263A99;
+    color: #333333;
 }
 
 .icon-item span {
