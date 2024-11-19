@@ -1,3 +1,4 @@
+//Backend/controllers/resultController.js
 const { JobPost } = require('../models');
 const redisClient = require('../../config/redisClient');
 

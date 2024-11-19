@@ -31,12 +31,20 @@ exports.updateJobPost = async (req, res) => {
         // Invalida el caché del job post específico
         await redisClient.del(`jobposts:${id}`);
 
+        // Invalidar cachés relacionados con búsquedas
+        const searchKeys = await redisClient.keys('jobposts:*'); // Obtener todas las claves relacionadas
+        if (searchKeys.length > 0) {
+            await redisClient.del(...searchKeys); // Elimina todas las claves relacionadas
+        }
+
         res.status(200).json(updatedJobPost);
     } catch (error) {
         console.error("Error al actualizar el job post:", error);
         res.status(500).json({ message: "Error updating job post", error });
     }
 };
+
+
 
 exports.deleteJobPost = async (req, res) => {
     const { id } = req.params;
@@ -49,8 +57,14 @@ exports.deleteJobPost = async (req, res) => {
             return res.status(404).json({ message: "Job post not found" });
         }
 
-        // Elimina la clave del caché relacionada
+        // Elimina la clave del caché relacionada con el job post específico
         await redisClient.del(`jobposts:${id}`);
+
+        // Invalidar cachés relacionados con búsquedas
+        const searchKeys = await redisClient.keys('jobposts:*'); // Obtener todas las claves relacionadas
+        if (searchKeys.length > 0) {
+            await redisClient.del(...searchKeys); // Elimina todas las claves relacionadas
+        }
 
         res.status(200).json({ message: "Job post deleted successfully" });
     } catch (error) {
@@ -58,6 +72,7 @@ exports.deleteJobPost = async (req, res) => {
         res.status(500).json({ message: "Error deleting job post", error });
     }
 };
+
 
 
 exports.getAllJobPosts = async (req, res) => {
@@ -97,6 +112,7 @@ exports.getFilteredResults = async (req, res) => {
     try {
         const cachedResults = await redisClient.get(cacheKey);
         if (cachedResults) {
+            console.log("Resultados obtenidos del caché.");
             return res.status(200).json(JSON.parse(cachedResults));
         }
 
@@ -113,8 +129,13 @@ exports.getFilteredResults = async (req, res) => {
             }
         }
 
+        console.log("MongoDB Filter:", filter);
+
         const jobPosts = await jobPostService.getFilteredJobPosts(filter);
+
+        // Actualiza el caché después de consultar MongoDB
         await redisClient.setEx(cacheKey, 3600, JSON.stringify(jobPosts));
+
         res.status(200).json(jobPosts);
     } catch (error) {
         console.error("Error en getFilteredResults:", error);
