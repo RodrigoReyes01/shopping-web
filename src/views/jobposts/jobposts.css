@@ -1,161 +1,196 @@
+/* Contenedor principal */
 .jobpost-container {
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Espacio entre los contenedores */
+    gap: 20px;
     padding: 20px;
-    background-color: #2A2829; /* Verde Oscuro */
-    height: 100vh; /* Ocupa toda la altura de la ventana */
+    background-color: #121212; /* Fondo oscuro */
+    height: 100vh;
+    color: #F0F0F0; /* Texto claro */
     box-sizing: border-box;
-    overflow: hidden; /* Evita que sobresalga */
-    color: #F0EBE5; /* Aplica el color Alabaster al texto */
+    overflow: hidden;
+    /* Clase global para aplicar la fuente en todo el view */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-.dashboard, .jobpost-form, .jobpost-list {
-    height: calc(100vh - 40px); /* Ajusta la altura del contenedor restando el padding */
-    border-radius: 10px;
-    overflow-y: auto; /* Habilita el scroll vertical */
-}
-
+/* Dashboard */
 .dashboard {
     width: 20%;
-    height: 98.5%;
-    background-color: #DCD0BE; /* PASTEL GREY */
-    padding: 10px;
-    color: #F0EBE5; /* Alabaster */
+    background-color: #1F1F1F; /* Fondo oscuro más claro */
+    border-radius: 12px;
+    padding: 20px;
+    color: #F0F0F0;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Formulario */
 .jobpost-form {
     width: 30%;
-    height: 96%;
-    background-color: #97B4DE; /* Azul Cielo */
+    background-color: #1F1F1F;
+    border-radius: 12px;
     padding: 20px;
-    color: #F0EBE5; /* Alabaster */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    color: #F0F0F0;
 }
 
-.jobpost-form input, 
-.jobpost-form textarea, 
-.jobpost-form select, 
+.jobpost-form h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.jobpost-form input,
+.jobpost-form textarea,
+.jobpost-form select,
 .jobpost-form button {
-    width: 98%; /* Ajusta el ancho para que no se salga del contenedor */
+    width: calc(100% - 20px); /* Ajusta el ancho para agregar espacio interno */
     margin-bottom: 15px;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    color: #263A99; /* Texto en azul */
-    background-color: white; /* Fondo blanco para inputs */
-    box-sizing: border-box; /* Asegura que el padding no se sume al ancho */
-}
-
-.jobpost-form select {
-    background-color: #263A99; /* Azul para los dropdowns */
-    color: #F0EBE5; /* Alabaster para el texto */
+    background-color: #2A2A2A; /* Fondo gris oscuro */
+    color: #F0F0F0; /* Texto claro */
+    font-size: 1rem;
+    box-sizing: border-box; /* Asegura que padding no afecte el ancho */
 }
 
 .jobpost-form button {
-    background-color: #263A99; /* Azul */
+    background-color: #414141; /* Gris oscuro */
     color: white;
     cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
+.jobpost-form button:hover {
+    background-color: #575757; /* Gris más claro */
+}
+
+/* Lista de job posts */
 .jobpost-list {
     width: 40%;
-    height: 96%;
-    background-color: #DCD0BE; /* PASTEL GREY */
+    background-color: #1F1F1F;
+    border-radius: 12px;
     padding: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    color: #F0F0F0;
+    overflow-y: auto;
 }
 
 .jobpost-list h3 {
-    color: #F0EBE5; /* Alabaster */
-    position: sticky; /* Mantiene el título fijo */
-    top: 0; /* Fija el título en la parte superior del contenedor */
-    background-color: #DCD0BE; /* Fondo del título para que no se solape con el contenido */
-    padding: 10px 0; /* Añade algo de padding para mejor apariencia */
-    z-index: 10; /* Asegura que el título esté por encima del contenido */
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #F0F0F0;
 }
 
 .jobpost-list ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .jobpost-list li {
+    background-color: #2A2A2A; /* Fondo gris oscuro */
+    padding: 15px;
     margin-bottom: 10px;
-    padding: 10px;
-    background-color: #97B4DE; /* Azul Cielo */
-    border: 1px solid #97B4DE;
-    border-radius: 5px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #F0EBE5; /* Alabaster */
-    position: relative;
+    transition: background-color 0.3s ease;
 }
 
+.jobpost-list li:hover {
+    background-color: #3A3A3A; /* Fondo gris más claro */
+}
+
+/* Contenido del job post */
 .jobpost-list li div {
-    width: 80%; /* Ajusta el ancho del contenido para dejar espacio a los botones */
+    flex: 1;
+    color: #F0F0F0;
+    font-size: 1rem;
 }
 
+/* Botones de acción */
 .btn-update {
-    background-color: #263A99; /* Azul */
+    background-color: #4CAF50; /* Verde */
     color: white;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border: none;
-    border-radius: 5px;
-    position: absolute;
-    right: 70px; /* Ajusta la posición del botón */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-update:hover {
+    background-color: #45A049; /* Verde más oscuro */
 }
 
 .btn-delete {
-    background-color: #ff0000; /* Rojo */
+    background-color: #F44336; /* Rojo */
     color: white;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border: none;
-    border-radius: 5px;
-    position: absolute;
-    right: 10px; /* Alinea el botón a la derecha */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
 }
 
-/* Modal Styles */
+.btn-delete:hover {
+    background-color: #E53935; /* Rojo más oscuro */
+}
+
+/* Modal */
 .modal {
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
-    background-color: #97B4DE; /* Azul Cielo */
+    background-color: #1F1F1F;
     padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    color: #F0EBE5; /* Alabaster */
+    border-radius: 12px;
+    width: 40%;
+    color: #F0F0F0;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.modal-content input, 
-.modal-content textarea, 
+.modal-content input,
+.modal-content textarea,
 .modal-content select {
-    width: 100%;
-    margin-bottom: 10px;
+    width: calc(100% - 20px); /* Ajusta el ancho para agregar espacio interno */
+    margin-bottom: 15px;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: white;
-    color: #263A99; /* Azul */
+    background-color: #2A2A2A;
+    color: #F0F0F0;
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
 .modal-content button {
-    background-color: #263A99; /* Azul */
+    background-color: #4CAF50; /* Verde */
     color: white;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 1rem;
     margin-right: 10px;
+}
+
+.modal-content button:hover {
+    background-color: #45A049;
 }
